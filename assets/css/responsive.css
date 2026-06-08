@@ -4,6 +4,21 @@
    Loaded via header.php after AdminLTE CSS.
 ================================================ */
 
+/* Custom Scrollbar for better UI */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-medium, #cbd5e1);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted, #94a3b8);
+}
 /* ===== TABLE HORIZONTAL SCROLL =====
    All known table classes are made scrollable on mobile.
    Tables keep normal size, parent scrolls horizontally. */

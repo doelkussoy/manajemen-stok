@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Users extends CI_Controller {
+    public $M_users;
 
     public function __construct() {
         parent::__construct();
@@ -52,7 +53,7 @@ class Users extends CI_Controller {
         $data = [
             'nama_lengkap' => $nama_lengkap,
             'username'     => $username,
-            'password'     => $password, // plain text sesuai sistem yang sudah ada
+            'password'     => password_hash($password, PASSWORD_DEFAULT),
             'role'         => $role,
             'created_at'   => date('Y-m-d H:i:s'),
         ];
@@ -95,7 +96,7 @@ class Users extends CI_Controller {
 
         // Hanya update password jika diisi
         if (!empty($password)) {
-            $data['password'] = $password;
+            $data['password'] = password_hash($password, PASSWORD_DEFAULT);
         }
 
         if ($this->M_users->update_user($id_user, $data)) {

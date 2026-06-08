@@ -2,10 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends CI_Controller {
+    public $M_auth;
+    public $M_users;
 
     public function __construct() {
         parent::__construct();
         $this->load->model('M_auth');
+        // diperlukan untuk migrasi password legacy ke hash
+        $this->load->model('admin/M_users');
     }
 
     public function index() {
@@ -31,9 +35,19 @@ class Auth extends CI_Controller {
             return;
         }
 
-        if ($password == $user->password) {
-
-         date_default_timezone_set('Asia/Jakarta');
+        // Periksa password menggunakan password_verify (hash)
+        if (isset($user->password) && password_verify($password, $user->password)) {
+            // ok
+        } elseif (isset($user->password) && $password == $user->password) {
+            // Legacy: password disimpan plain-text. Re-hash dan simpan agar aman.
+            $new_hash = password_hash($password, PASSWORD_DEFAULT);
+            $this->M_users->update_user($user->id_user, ['password' => $new_hash]);
+        } else {
+            $this->session->set_flashdata('pesan', 'Password salah');
+            redirect('auth');
+            return;
+        }
+        date_default_timezone_set('Asia/Jakarta');
             
             $session_data = array(
                 'id_user'   => $user->id_user,
@@ -50,10 +64,6 @@ class Auth extends CI_Controller {
             } else {
                 redirect('kasir');
             }
-        } else {
-            $this->session->set_flashdata('pesan', 'Password salah');
-            redirect('auth');
-        }
     } else {
         $this->session->set_flashdata('pesan', 'Username tidak ditemukan');
         redirect('auth');

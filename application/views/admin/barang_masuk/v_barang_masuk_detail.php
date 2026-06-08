@@ -76,7 +76,9 @@
                 <div class="nota-banner">
                     <div>
                         <div class="nota-badge"><?= htmlspecialchars($header['no_faktur']) ?></div>
-                        <div class="nota-date"><i class="fas fa-calendar-alt" style="margin-right:5px;"></i><?= date('d F Y', strtotime($header['tgl_beli'])) ?></div>
+                        <div class="nota-date"><i class="fas fa-calendar-alt" style="margin-right:5px;"></i>
+                            <?= !empty($header['tgl_beli']) ? date('d F Y', strtotime($header['tgl_beli'])) : (!empty($header['created_at']) ? date('d F Y', strtotime($header['created_at'])) : '-') ?>
+                        </div>
                     </div>
                     <div style="text-align:right;">
                         <div class="nota-total-label">Total Bayar</div>
@@ -191,7 +193,7 @@
                     <div class="side-icon" style="background:#fdf4ff; color:#9333ea;"><i class="fas fa-calendar-plus"></i></div>
                     <div>
                         <span class="side-label">Tanggal Beli</span>
-                        <span class="side-value"><?= date('d M Y', strtotime($header['tgl_beli'])) ?></span>
+                        <span class="side-value"><?= !empty($header['tgl_beli']) ? date('d M Y', strtotime($header['tgl_beli'])) : (!empty($header['created_at']) ? date('d M Y', strtotime($header['created_at'])) : '-') ?></span>
                     </div>
                 </div>
                 <div class="side-info-row">

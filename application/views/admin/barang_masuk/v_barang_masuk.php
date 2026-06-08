@@ -158,7 +158,9 @@
                     <tr>
                         <td style="color:#9ca3af; font-size:12px;"><?= $i + 1 ?></td>
                         <td><span class="faktur-code"><?= htmlspecialchars($p['no_faktur']) ?></span></td>
-                        <td style="font-size:12.5px;"><?= date('d M Y', strtotime($p['tgl_beli'])) ?></td>
+                        <td style="font-size:12.5px;">
+                            <?= !empty($p['tgl_beli']) ? date('d M Y', strtotime($p['tgl_beli'])) : (!empty($p['created_at']) ? date('d M Y', strtotime($p['created_at'])) : '-') ?>
+                        </td>
                         <td>
                             <span class="sup-pill">
                                 <i class="fas fa-truck" style="font-size:9px;"></i>

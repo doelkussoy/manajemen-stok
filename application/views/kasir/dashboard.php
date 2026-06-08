@@ -1,17 +1,6 @@
-<div class="content-wrapper" style="background:#f5f7fa; font-family:'DM Sans','Segoe UI',sans-serif; overflow-x:hidden;">
+<div class="content-wrapper" style="background:#f5f7fa; overflow-x:hidden;">
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
-
-    .content-wrapper, .content-wrapper *:not(i):not(svg):not(path) {
-        font-family: 'DM Sans', 'Segoe UI', sans-serif;
-    }
-
-    .content-wrapper {
-        overflow-x: hidden;
-        box-sizing: border-box;
-    }
-
     /* Grid children tidak boleh overflow */
     .kasir-main > div,
     .kasir-right > div,
@@ -38,15 +27,15 @@
     }
 
     .k-stat-card {
-        background: #ffffff;
-        border-radius: 14px;
+        background: var(--bg-surface);
+        border-radius: var(--radius-lg);
         padding: 20px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.07);
-        border: 1px solid rgba(0,0,0,0.04);
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-light);
         display: flex;
         flex-direction: column;
         gap: 12px;
-        transition: transform 0.2s, box-shadow 0.2s;
+        transition: transform var(--transition-fast), box-shadow var(--transition-fast);
         animation: fadeSlideUp 0.4s ease both;
     }
 
@@ -56,7 +45,7 @@
 
     .k-stat-card:hover {
         transform: translateY(-3px);
-        box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+        box-shadow: var(--shadow-hover);
     }
 
     .k-stat-top {
@@ -112,10 +101,10 @@
 
     /* ===== CARD BASE ===== */
     .k-card {
-        background: #ffffff;
-        border-radius: 14px;
-        border: 1px solid #e8ecf0;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        background: var(--bg-surface);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border-light);
+        box-shadow: var(--shadow-md);
         overflow: hidden;
     }
 
@@ -168,22 +157,23 @@
         gap: 12px;
         margin: 16px;
         padding: 16px;
-        background: linear-gradient(135deg, #1a56db, #0d3fa6);
+        background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
         color: white;
-        border-radius: 12px;
+        border-radius: var(--radius-lg);
         font-size: 15px;
         font-weight: 700;
         text-decoration: none;
-        transition: opacity 0.2s, transform 0.2s;
-        box-shadow: 0 4px 14px rgba(26,86,219,0.3);
+        transition: opacity var(--transition-fast), transform var(--transition-fast);
+        box-shadow: var(--shadow-primary);
         box-sizing: border-box;
     }
 
     .btn-new-transaction:hover {
         opacity: 0.93;
-        transform: translateY(-1px);
+        transform: translateY(-2px);
         color: white;
         text-decoration: none;
+        box-shadow: var(--shadow-hover);
     }
 
     .btn-new-transaction i {
@@ -371,7 +361,7 @@
 
     <!-- ===== FLASH MESSAGE ===== -->
     <?php if ($this->session->flashdata('error')): ?>
-    <div style="margin: 16px 24px 0; padding: 11px 16px; border-radius: 10px; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 9px; background: #fef2f2; color: #dc2626; border: 1px solid #fecaca;">
+    <div style="margin: 16px 24px 0; padding: 11px 16px; border-radius: 10px; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 9px; background: var(--color-danger-light); color: var(--color-danger); border: 1px solid var(--color-danger-border);">
         <i class="fas fa-exclamation-circle"></i>
         <?= $this->session->flashdata('error') ?>
     </div>
@@ -398,10 +388,10 @@
                 </div>
             </div>
 
-            <div class="k-stat-card">
+            <div class="k-stat-card animate-fade-slide-up">
                 <div class="k-stat-top">
-                    <div class="k-stat-icon" style="background:#eff6ff; color:#1a56db;"><i class="fas fa-money-bill-wave"></i></div>
-                    <span class="k-badge" style="background:#eff6ff; color:#1a56db;">Total</span>
+                    <div class="k-stat-icon" style="background:var(--color-primary-light); color:var(--color-primary);"><i class="fas fa-money-bill-wave"></i></div>
+                    <span class="k-badge badge-soft-primary">Total</span>
                 </div>
                 <div>
                     <div class="k-stat-value money">Rp <?= number_format($my_omzet_hari ?? 0, 0, ',', '.') ?></div>
@@ -484,9 +474,9 @@
                                 <td class="trx-amount">Rp <?= number_format($t['total_harga'], 0, ',', '.') ?></td>
                                 <td>
                                     <?php if (($t['status'] ?? '') === 'Lunas'): ?>
-                                        <span class="k-badge-status">Lunas</span>
+                                        <span class="k-badge-status badge-soft-success">Lunas</span>
                                     <?php else: ?>
-                                        <span class="k-badge-status" style="background:#fef2f2; color:#dc2626;">Batal</span>
+                                        <span class="k-badge-status badge-soft-danger">Batal</span>
                                     <?php endif; ?>
                                 </td>
                             </tr>

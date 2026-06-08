@@ -570,7 +570,7 @@
         <div class="sstat-card">
             <div class="sstat-icon" style="background:#f0fdf4; color:#16a34a;"><i class="fas fa-check-circle"></i></div>
             <div>
-                <?php $lengkap = count(array_filter($suppliers, fn($s) => !empty($s['nama_kontak']) && !empty($s['no_telp']))); ?>
+                <?php $lengkap = count(array_filter($suppliers, fn($s) => !empty($s['nama_kontak'] ?? '') && !empty($s['no_telp'] ?? $s['telp'] ?? ''))); ?>
                 <div class="sstat-value"><?= $lengkap ?></div><div class="sstat-label">Data Kontak Lengkap</div>
             </div>
         </div>
@@ -605,8 +605,8 @@
                     <tr>
                         <td style="color:#9ca3af; font-size:12px; width:40px;"><?= $i + 1 ?></td>
                         <td><div class="sup-wrap"><div class="sup-avatar"><?= strtoupper(substr($s['nama_supplier'], 0, 1)) ?></div><div><span class="sup-name"><?= htmlspecialchars($s['nama_supplier']) ?></span><span class="sup-kode"><?= htmlspecialchars($s['kode_supplier']) ?></span></div></div></td>
-                        <td><div class="kontak-wrap"><span class="kontak-nama"><?= htmlspecialchars($s['nama_kontak'] ?: '-') ?></span><span class="kontak-telp"><?= !empty($s['no_telp']) ? '<i class="fas fa-phone" style="font-size:10px; margin-right:4px;"></i>' . htmlspecialchars($s['no_telp']) : '-' ?></span></div></td>
-                        <td style="font-size:12.5px; color:#6b7280;"><?= !empty($s['email']) ? '<a href="mailto:'.htmlspecialchars($s['email']).'" style="color:#1a56db; text-decoration:none;">'.htmlspecialchars($s['email']).'</a>' : '<span style="color:#d1d5db;">—</span>' ?></td>
+                        <td><div class="kontak-wrap"><span class="kontak-nama"><?= htmlspecialchars($s['nama_kontak'] ?? '-') ?></span><span class="kontak-telp"><?= !empty($s['no_telp'] ?? $s['telp'] ?? '') ? '<i class="fas fa-phone" style="font-size:10px; margin-right:4px;"></i>' . htmlspecialchars($s['no_telp'] ?? $s['telp']) : '-' ?></span></div></td>
+                        <td style="font-size:12.5px; color:#6b7280;"><?= !empty($s['email'] ?? '') ? '<a href="mailto:'.htmlspecialchars($s['email']).'" style="color:#1a56db; text-decoration:none;">'.htmlspecialchars($s['email']).'</a>' : '<span style="color:#d1d5db;">—</span>' ?></td>
                         <td style="font-size:12.5px; color:#6b7280; max-width:160px;"><span style="display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:160px;" title="<?= htmlspecialchars($s['alamat'] ?: '') ?>"><?= !empty($s['alamat']) ? htmlspecialchars($s['alamat']) : '<span style="color:#d1d5db;">—</span>' ?></span></td>
                         <td>
                             <button class="btn-action btn-detail" onclick="openDetail(<?= htmlspecialchars(json_encode($s), ENT_QUOTES) ?>)">
@@ -645,7 +645,7 @@
 <script>
     function openModal(id){document.getElementById(id).classList.add('show');}
     function closeModal(id){document.getElementById(id).classList.remove('show');}
-    function openDetail(s){document.getElementById('det_avatar').textContent=s.nama_supplier.charAt(0).toUpperCase();document.getElementById('det_nama').textContent=s.nama_supplier;document.getElementById('det_kode').textContent=s.kode_supplier;document.getElementById('det_kontak').textContent=s.nama_kontak||'—';document.getElementById('det_telp').textContent=s.no_telp||'—';document.getElementById('det_email').textContent=s.email||'—';document.getElementById('det_alamat').textContent=s.alamat||'—';document.getElementById('det_keterangan').textContent=s.keterangan||'—';openModal('modalDetail');}
+    function openDetail(s){document.getElementById('det_avatar').textContent=s.nama_supplier.charAt(0).toUpperCase();document.getElementById('det_nama').textContent=s.nama_supplier;document.getElementById('det_kode').textContent=s.kode_supplier;document.getElementById('det_kontak').textContent=s.nama_kontak||'—';document.getElementById('det_telp').textContent=(s.no_telp||s.telp)||'—';document.getElementById('det_email').textContent=s.email||'—';document.getElementById('det_alamat').textContent=s.alamat||'—';document.getElementById('det_keterangan').textContent=s.keterangan||'—';openModal('modalDetail');}
     document.querySelectorAll('.modal-overlay').forEach(function(o){o.addEventListener('click',function(e){if(e.target===o)o.classList.remove('show');});});
     document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.modal-overlay.show').forEach(function(m){m.classList.remove('show');});});
     var ROWS_PER_PAGE=10,currentPage=1,allRows=[],filteredRows=[];

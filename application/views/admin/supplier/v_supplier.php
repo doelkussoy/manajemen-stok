@@ -179,7 +179,7 @@
     <!-- STAT CARDS -->
     <?php
         $total_sup     = count(array_filter($suppliers, fn($s) => ($s['status'] ?? 'aktif') === 'aktif'));
-        $lengkap       = count(array_filter($suppliers, fn($s) => ($s['status'] ?? 'aktif') === 'aktif' && !empty($s['nama_kontak']) && !empty($s['no_telp']) && !empty($s['email']) && !empty($s['alamat'])));
+        $lengkap       = count(array_filter($suppliers, fn($s) => ($s['status'] ?? 'aktif') === 'aktif' && !empty($s['nama_kontak'] ?? '') && !empty($s['no_telp'] ?? $s['telp'] ?? '') && !empty($s['email'] ?? '') && !empty($s['alamat'] ?? '')));
         $tidak_lengkap = $total_sup - $lengkap;
         $nonaktif      = count(array_filter($suppliers, fn($s) => ($s['status'] ?? 'aktif') === 'nonaktif'));
         $bulan_ini     = count(array_filter($suppliers, fn($s) => ($s['status'] ?? 'aktif') === 'aktif' && date('Y-m', strtotime($s['created_at'])) === date('Y-m')));
@@ -262,12 +262,12 @@
                         </td>
                         <td>
                             <div class="kontak-wrap">
-                                <span class="kontak-nama"><?= htmlspecialchars($s['nama_kontak'] ?: '-') ?></span>
-                                <span class="kontak-telp"><?= !empty($s['no_telp']) ? '<i class="fas fa-phone" style="font-size:10px; margin-right:4px;"></i>' . htmlspecialchars($s['no_telp']) : '-' ?></span>
+                                <span class="kontak-nama"><?= htmlspecialchars($s['nama_kontak'] ?? '-') ?></span>
+                                <span class="kontak-telp"><?= !empty($s['no_telp'] ?? $s['telp'] ?? '') ? '<i class="fas fa-phone" style="font-size:10px; margin-right:4px;"></i>' . htmlspecialchars($s['no_telp'] ?? $s['telp']) : '-' ?></span>
                             </div>
                         </td>
                         <td style="font-size:12.5px; color:#6b7280;">
-                            <?= !empty($s['email']) ? '<a href="mailto:'.htmlspecialchars($s['email']).'" style="color:#1a56db; text-decoration:none;">'.htmlspecialchars($s['email']).'</a>' : '<span style="color:#d1d5db;">—</span>' ?>
+                            <?= !empty($s['email'] ?? '') ? '<a href="mailto:'.htmlspecialchars($s['email']).'" style="color:#1a56db; text-decoration:none;">'.htmlspecialchars($s['email']).'</a>' : '<span style="color:#d1d5db;">—</span>' ?>
                         </td>
                         <td style="font-size:12.5px; color:#6b7280; max-width:160px;">
                             <span style="display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:160px;" title="<?= htmlspecialchars($s['alamat'] ?: '') ?>">
@@ -347,11 +347,11 @@
                     </td>
                     <td>
                         <div class="kontak-wrap">
-                            <span class="kontak-nama"><?= htmlspecialchars($s['nama_kontak'] ?: '-') ?></span>
-                            <span class="kontak-telp"><?= !empty($s['no_telp']) ? htmlspecialchars($s['no_telp']) : '-' ?></span>
+                            <span class="kontak-nama"><?= htmlspecialchars($s['nama_kontak'] ?? '-') ?></span>
+                            <span class="kontak-telp"><?= !empty($s['no_telp'] ?? $s['telp'] ?? '') ? htmlspecialchars($s['no_telp'] ?? $s['telp']) : '-' ?></span>
                         </div>
                     </td>
-                    <td style="font-size:12.5px; color:#6b7280;"><?= htmlspecialchars($s['email'] ?: '—') ?></td>
+                    <td style="font-size:12.5px; color:#6b7280;"><?= htmlspecialchars($s['email'] ?? '—') ?></td>
                     <td>
                         <span class="badge-nonaktif"><i class="fas fa-ban" style="font-size:9px;"></i> Nonaktif</span>
                     </td>
@@ -647,7 +647,7 @@
         document.getElementById('edit_kode_hidden').value     = s.kode_supplier;
         document.getElementById('edit_nama').value       = s.nama_supplier;
         document.getElementById('edit_kontak').value     = s.nama_kontak  || '';
-        document.getElementById('edit_telp').value       = s.no_telp      || '';
+        document.getElementById('edit_telp').value       = s.no_telp || s.telp || '';
         document.getElementById('edit_email').value      = s.email        || '';
         document.getElementById('edit_alamat').value     = s.alamat       || '';
         document.getElementById('edit_keterangan').value = s.keterangan   || '';
@@ -659,7 +659,7 @@
         document.getElementById('det_nama').textContent       = s.nama_supplier;
         document.getElementById('det_kode').textContent       = s.kode_supplier;
         document.getElementById('det_kontak').textContent     = s.nama_kontak  || '—';
-        document.getElementById('det_telp').textContent       = s.no_telp      || '—';
+        document.getElementById('det_telp').textContent       = (s.no_telp || s.telp) || '—';
         document.getElementById('det_email').textContent      = s.email        || '—';
         document.getElementById('det_alamat').textContent     = s.alamat       || '—';
         document.getElementById('det_keterangan').textContent = s.keterangan   || '—';

@@ -14,6 +14,43 @@ class Supplier extends CI_Controller {
         }
     }
 
+    private function build_supplier_data($kode, $nama) {
+        $phone      = $this->input->post('no_telp', TRUE);
+        $email      = $this->input->post('email', TRUE);
+        $contact    = $this->input->post('nama_kontak', TRUE);
+        $alamat     = $this->input->post('alamat', TRUE);
+        $keterangan = $this->input->post('keterangan', TRUE);
+
+        $data = [
+            'kode_supplier' => $kode,
+            'nama_supplier' => $nama,
+        ];
+
+        if ($this->db->field_exists('nama_kontak', 'suppliers')) {
+            $data['nama_kontak'] = $contact;
+        }
+
+        if ($this->db->field_exists('no_telp', 'suppliers')) {
+            $data['no_telp'] = $phone;
+        } elseif ($this->db->field_exists('telp', 'suppliers')) {
+            $data['telp'] = $phone;
+        }
+
+        if ($this->db->field_exists('email', 'suppliers')) {
+            $data['email'] = $email;
+        }
+
+        if ($this->db->field_exists('alamat', 'suppliers')) {
+            $data['alamat'] = $alamat;
+        }
+
+        if ($this->db->field_exists('keterangan', 'suppliers')) {
+            $data['keterangan'] = $keterangan;
+        }
+
+        return $data;
+    }
+
     public function index() {
         $data['title']     = 'Data Supplier | PT Pordjo';
         // Ambil semua (aktif + nonaktif) agar view bisa mengelompokkan keduanya
@@ -66,17 +103,9 @@ class Supplier extends CI_Controller {
         $kode = $this->M_supplier->generate_kode();
 
         date_default_timezone_set('Asia/Jakarta');
-        $data = [
-            'kode_supplier' => $kode,
-            'nama_supplier' => $nama,
-            'nama_kontak'   => $this->input->post('nama_kontak',  TRUE),
-            'no_telp'       => $this->input->post('no_telp',      TRUE),
-            'email'         => $this->input->post('email',        TRUE),
-            'alamat'        => $this->input->post('alamat',       TRUE),
-            'keterangan'    => $this->input->post('keterangan',   TRUE),
-            'created_at'    => date('Y-m-d H:i:s'),
-            'updated_at'    => date('Y-m-d H:i:s'),
-        ];
+        $data = $this->build_supplier_data($kode, $nama);
+        $data['created_at'] = date('Y-m-d H:i:s');
+        $data['updated_at'] = date('Y-m-d H:i:s');
 
         if ($this->M_supplier->insert($data)) {
             $this->session->set_flashdata('success', 'Supplier "' . $nama . '" berhasil ditambahkan!');
@@ -135,16 +164,8 @@ class Supplier extends CI_Controller {
         }
 
         date_default_timezone_set('Asia/Jakarta');
-        $data = [
-            'kode_supplier' => $kode,
-            'nama_supplier' => $nama,
-            'nama_kontak'   => $this->input->post('nama_kontak',  TRUE),
-            'no_telp'       => $this->input->post('no_telp',      TRUE),
-            'email'         => $this->input->post('email',        TRUE),
-            'alamat'        => $this->input->post('alamat',       TRUE),
-            'keterangan'    => $this->input->post('keterangan',   TRUE),
-            'updated_at'    => date('Y-m-d H:i:s'),
-        ];
+        $data = $this->build_supplier_data($kode, $nama);
+        $data['updated_at'] = date('Y-m-d H:i:s');
 
         if ($this->M_supplier->update($id, $data)) {
             $this->session->set_flashdata('success', 'Supplier "' . $nama . '" berhasil diperbarui!');

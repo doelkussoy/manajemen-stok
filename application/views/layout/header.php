@@ -6,9 +6,10 @@
   <title><?= $title; ?></title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
-  <link rel="stylesheet" href="<?= base_url('assets/css/responsive.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/theme.css?v=' . time()) ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/responsive.css?v=' . time()) ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/dark-mode.css') ?>">
 
   <!-- Pre-apply dark mode SEBELUM render untuk menghindari flash putih -->
@@ -21,9 +22,24 @@
   </script>
 
   <style>
+    :root { --sidebar-width: 260px; --header-height: 64px; }
+
     /* ===== SMOOTH ADMINLTE COLLAPSE ===== */
     .main-header, .content-wrapper, .main-footer {
       transition: margin-left 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+    }
+
+    /* Ensure main layout is offset by the fixed sidebar to avoid overlap */
+    body:not(.sidebar-collapse) .main-header,
+    body:not(.sidebar-collapse) .content-wrapper,
+    body:not(.sidebar-collapse) .main-footer {
+      margin-left: var(--sidebar-width) !important;
+    }
+
+    body.sidebar-collapse .main-header,
+    body.sidebar-collapse .content-wrapper,
+    body.sidebar-collapse .main-footer {
+      margin-left: 0 !important;
     }
 
     /* ===== GREETING CARD TRIGGER ===== */
@@ -66,20 +82,22 @@
 
     .navbar-greeting-card.active .greeting-caret {
       transform: rotate(180deg);
-      color: #1a56db;
+      color: var(--color-primary);
     }
 
     /* ===== POPUP ===== */
     .account-popup {
-      position: absolute;
-      top: calc(100% + 10px);
+      /* Use fixed so popup isn't clipped by parent stacking contexts */
+      position: fixed;
+      top: calc(var(--header-height) + 8px);
       right: 12px;
-      width: 284px;
+      width: 260px;
+      max-width: calc(100vw - 32px);
       background: #ffffff;
       border: 1px solid #e5e7eb;
       border-radius: 14px;
       box-shadow: 0 12px 40px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.05);
-      z-index: 9999;
+      z-index: 9999999;
       overflow: hidden;
 
       opacity: 0;
@@ -87,6 +105,28 @@
       pointer-events: none;
       transition: opacity 0.18s ease, transform 0.18s ease;
       transform-origin: top right;
+    }
+
+    /* caret/arrow should blend with popup and be hidden on small screens */
+    .account-popup::before {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      box-shadow: none;
+    }
+
+    /* Mobile: make popup full-width and anchored under header */
+    @media (max-width: 480px) {
+      .account-popup {
+        position: fixed;
+        left: 8px !important;
+        right: 8px !important;
+        top: calc(var(--header-height) + 8px) !important;
+        width: calc(100% - 16px) !important;
+        transform-origin: top center;
+        border-radius: 12px !important;
+        z-index: 12000 !important;
+      }
+      .account-popup::before { display: none; }
     }
 
     .account-popup.show {
@@ -110,7 +150,7 @@
 
     /* ===== POPUP HEADER ===== */
     .popup-header {
-      background: linear-gradient(135deg, #1a56db 0%, #0d3fa6 100%);
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
       padding: 18px 20px 20px;
       display: flex;
       align-items: center;
@@ -122,7 +162,7 @@
       width: 50px;
       height: 50px;
       min-width: 50px;
-      background: rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.1);
       border: 2px solid rgba(255,255,255,0.3);
       border-radius: 13px;
       display: flex;
@@ -259,8 +299,8 @@
 <script>if(localStorage.getItem('darkMode')==='true')document.body.classList.add('dark-mode');</script>
 <div class="wrapper">
 
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light"
-       style="border-bottom:1px solid #e8ecf0; box-shadow:0 1px 6px rgba(0,0,0,0.04); background:#ffffff; min-height:57px; display:flex; align-items:center;">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light bg-glass"
+       style="border-bottom:1px solid var(--border-light); min-height:64px; display:flex; align-items:center;">
 
     <!-- Sidebar Toggle -->
     <ul class="navbar-nav">
@@ -286,12 +326,12 @@
           <i class="fas fa-moon" id="darkModeIcon"></i>
         </button> -->
 
-        <div class="account-dropdown-wrap">
+        <div class="account-dropdown-wrap" style="height: 100%; display: flex; align-items: center;">
 
           <!-- TRIGGER -->
           <div class="navbar-greeting-card" id="greetingCard" title="Lihat info akun">
 
-            <div style="width:32px; height:32px; background:linear-gradient(135deg,#1a56db,#0d3fa6); border-radius:7px; display:flex; align-items:center; justify-content:center; color:white; font-size:13px; font-weight:700; font-family:'DM Sans',sans-serif; box-shadow:0 2px 6px rgba(26,86,219,0.25); flex-shrink:0;">
+            <div style="width:32px; height:32px; background:linear-gradient(135deg,var(--color-primary),var(--color-primary-hover)); border-radius:7px; display:flex; align-items:center; justify-content:center; color:white; font-size:13px; font-weight:700; font-family:'DM Sans',sans-serif; box-shadow:var(--shadow-primary); flex-shrink:0;">
               <?= strtoupper(substr($this->session->userdata('nama') ?: 'A', 0, 1)); ?>
             </div>
 
@@ -404,12 +444,79 @@
       function openPopup()  {
         popup.classList.add('show');
         card.classList.add('active');
+        positionPopup();
       }
 
       function closePopup() {
         popup.classList.remove('show');
         card.classList.remove('active');
       }
+      
+      // Ensure popup is placed under <body> to avoid stacking context issues
+      if (popup && popup.parentElement !== document.body) {
+        document.body.appendChild(popup);
+      }
+
+      // Positioning logic: align popup under trigger and keep within viewport
+      function positionPopup() {
+        if (!card || !popup) return;
+        // On small screens, CSS handles full-width layout
+        if (window.innerWidth <= 480) {
+          popup.style.left = '';
+          popup.style.right = '';
+          popup.style.top = '';
+          popup.style.width = '';
+          return;
+        }
+
+        var rect = card.getBoundingClientRect();
+        // reset to get accurate measurements
+        popup.style.left = '';
+        popup.style.right = '';
+        popup.style.top = '';
+        popup.style.width = '';
+
+        // measure popup natural width
+          // measure without flashing: make it invisible but rendered
+          var prevVisibility = popup.style.visibility;
+          popup.style.visibility = 'hidden';
+          popup.classList.add('show');
+          var pRect = popup.getBoundingClientRect();
+
+          // Prefer anchoring popup under the header (so it doesn't overlap center cards)
+          var desiredTop = (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 64) + 8;
+
+          // Try to align left edge of popup to trigger's left, but keep within viewport
+          var desiredLeft = rect.left;
+          var minLeft = 8;
+          var maxLeft = window.innerWidth - pRect.width - 8;
+          if (desiredLeft < minLeft) desiredLeft = minLeft;
+          if (desiredLeft > maxLeft) desiredLeft = maxLeft;
+
+          popup.style.left = desiredLeft + 'px';
+          popup.style.top = desiredTop + 'px';
+          popup.style.right = 'auto';
+
+          // if popup would extend below viewport, shift it up a bit
+          var below = popup.getBoundingClientRect();
+          if (below.bottom > window.innerHeight) {
+            var overlap = below.bottom - window.innerHeight + 12;
+            popup.style.top = (desiredTop - overlap) + 'px';
+          }
+
+          // restore visibility state
+          popup.style.visibility = prevVisibility;
+
+        // if popup would extend below viewport, move it upward
+        var below = popup.getBoundingClientRect();
+        // (handled above)
+        // hide again if not active
+        if (!card.classList.contains('active')) popup.classList.remove('show');
+      }
+
+      // Reposition on resize/scroll when popup open
+      window.addEventListener('resize', function(){ if (card && card.classList.contains('active')) positionPopup(); });
+      window.addEventListener('scroll', function(){ if (card && card.classList.contains('active')) positionPopup(); }, true);
     })();
   </script>
 

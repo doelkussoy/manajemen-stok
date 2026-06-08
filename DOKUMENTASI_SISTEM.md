@@ -19,15 +19,15 @@ Sistem ini adalah **aplikasi Point of Sale (POS) berbasis web** yang dirancang k
 
 ### 1.2 Teknologi yang Digunakan
 
-| Komponen | Teknologi |
-|---|---|
-| **Framework** | CodeIgniter 3 (PHP MVC) |
-| **Database** | MySQL |
-| **Frontend** | HTML5, CSS3 (Vanilla), JavaScript |
-| **UI Framework** | AdminLTE 3.2 (layout dasar) |
-| **Font** | DM Sans (Google Fonts) |
-| **Icon** | Font Awesome 5 |
-| **Server Lokal** | Laragon (Apache + MySQL) |
+| Komponen         | Teknologi                         |
+| ---------------- | --------------------------------- |
+| **Framework**    | CodeIgniter 3 (PHP MVC)           |
+| **Database**     | MySQL                             |
+| **Frontend**     | HTML5, CSS3 (Vanilla), JavaScript |
+| **UI Framework** | AdminLTE 3.2 (layout dasar)       |
+| **Font**         | DM Sans (Google Fonts)            |
+| **Icon**         | Font Awesome 5                    |
+| **Server Lokal** | Laragon (Apache + MySQL)          |
 
 ### 1.3 Arsitektur MVC
 
@@ -73,18 +73,18 @@ application/
 
 ### 1.4 Struktur Database
 
-| Tabel | Fungsi | Relasi |
-|---|---|---|
-| `users` | Akun pengguna (admin/kasir) | → `sales`, `purchases` |
-| `categories` | Kategori produk | → `products` |
-| `products` | Master data produk | → `sale_details`, `purchase_details` |
-| `suppliers` | Data supplier/pemasok | → `purchases` |
-| `sales` | Header transaksi penjualan | → `sale_details` |
-| `sale_details` | Detail item per transaksi jual | FK: `sales`, `products` |
-| `purchases` | Header transaksi barang masuk | → `purchase_details` |
-| `purchase_details` | Detail item per barang masuk | FK: `purchases`, `products` |
-| `stok_log` | Audit trail perubahan stok manual | FK: `products`, `users` |
-| `harga_log` | Audit trail perubahan harga | FK: `products`, `users` |
+| Tabel              | Fungsi                            | Relasi                               |
+| ------------------ | --------------------------------- | ------------------------------------ |
+| `users`            | Akun pengguna (admin/kasir)       | → `sales`, `purchases`               |
+| `categories`       | Kategori produk                   | → `products`                         |
+| `products`         | Master data produk                | → `sale_details`, `purchase_details` |
+| `suppliers`        | Data supplier/pemasok             | → `purchases`                        |
+| `sales`            | Header transaksi penjualan        | → `sale_details`                     |
+| `sale_details`     | Detail item per transaksi jual    | FK: `sales`, `products`              |
+| `purchases`        | Header transaksi barang masuk     | → `purchase_details`                 |
+| `purchase_details` | Detail item per barang masuk      | FK: `purchases`, `products`          |
+| `stok_log`         | Audit trail perubahan stok manual | FK: `products`, `users`              |
+| `harga_log`        | Audit trail perubahan harga       | FK: `products`, `users`              |
 
 ---
 
@@ -112,6 +112,7 @@ Set Session (id_user, username, nama, role, logged_in, login_time)
 ```
 
 **Session Guard:** Setiap controller memiliki 2 lapis penjagaan di `__construct()`:
+
 1. **Cek login** — Jika belum login, redirect ke halaman `auth`
 2. **Cek role** — Jika role tidak sesuai, redirect ke halaman role-nya sendiri
 
@@ -210,28 +211,28 @@ Controller hapus() → Model has_transaksi($id)
 
 ### 3.1 Ringkasan Peran
 
-| Aspek | Admin (Superuser) | Kasir (Operator) |
-|---|---|---|
-| **Scope Data** | **Global** — semua data sistem | **Personal** — hanya data milik sendiri |
-| **Dashboard** | Statistik global + chart + monitoring | Statistik personal hari ini |
-| **Kategori** | Full CRUD | ❌ Tidak ada akses |
-| **Produk** | Full CRUD + opname | Lihat + opname stok saja |
-| **Supplier** | Full CRUD | Read-only (lihat saja) |
-| **Barang Masuk** | Lihat semua + input + hapus | Input + lihat milik sendiri |
-| **Penjualan** | Lihat semua + input + cetak | Input + cetak (hari ini, milik sendiri) |
-| **Laporan** | Laporan global semua kasir | Laporan penjualan sendiri |
-| **Kelola Akun** | Full CRUD | ❌ Tidak ada akses |
-| **Riwayat** | ❌ (menggunakan Penjualan) | ✅ Fitur eksklusif kasir |
+| Aspek            | Admin (Superuser)                     | Kasir (Operator)                        |
+| ---------------- | ------------------------------------- | --------------------------------------- |
+| **Scope Data**   | **Global** — semua data sistem        | **Personal** — hanya data milik sendiri |
+| **Dashboard**    | Statistik global + chart + monitoring | Statistik personal hari ini             |
+| **Kategori**     | Full CRUD                             | ❌ Tidak ada akses                      |
+| **Produk**       | Full CRUD + opname                    | Lihat + opname stok saja                |
+| **Supplier**     | Full CRUD                             | Read-only (lihat saja)                  |
+| **Barang Masuk** | Lihat semua + input + hapus           | Input + lihat milik sendiri             |
+| **Penjualan**    | Lihat semua + input + cetak           | Input + cetak (hari ini, milik sendiri) |
+| **Laporan**      | Laporan global semua kasir            | Laporan penjualan sendiri               |
+| **Kelola Akun**  | Full CRUD                             | ❌ Tidak ada akses                      |
+| **Riwayat**      | ❌ (menggunakan Penjualan)            | ✅ Fitur eksklusif kasir                |
 
 ### 3.2 Perbedaan Query Data
 
-| Fitur | Admin | Kasir |
-|---|---|---|
-| List Penjualan | `get_all()` — semua | `get_today_by_kasir($id)` — hari ini saja |
-| List Barang Masuk | `get_all()` — semua | `get_by_user($id)` — milik sendiri |
-| Detail Barang Masuk | Bebas akses | Validasi kepemilikan (cek `id_user`) |
-| Laporan | `get_laporan()` — global | `get_laporan_kasir($id)` — personal |
-| Top Produk | `get_top_produk()` — 5 global | `get_top_produk_kasir($id)` — 10 personal |
+| Fitur               | Admin                         | Kasir                                     |
+| ------------------- | ----------------------------- | ----------------------------------------- |
+| List Penjualan      | `get_all()` — semua           | `get_today_by_kasir($id)` — hari ini saja |
+| List Barang Masuk   | `get_all()` — semua           | `get_by_user($id)` — milik sendiri        |
+| Detail Barang Masuk | Bebas akses                   | Validasi kepemilikan (cek `id_user`)      |
+| Laporan             | `get_laporan()` — global      | `get_laporan_kasir($id)` — personal       |
+| Top Produk          | `get_top_produk()` — 5 global | `get_top_produk_kasir($id)` — 10 personal |
 
 ### 3.3 Menu Sidebar
 
@@ -261,10 +262,10 @@ Input qty ≤ 0 pada form penjualan akan ditolak oleh controller.
 
 ### 4.5 Audit Trail
 
-| Tabel Log | Mencatat |
-|---|---|
-| `stok_log` | Setiap perubahan stok manual: siapa, kapan, dari berapa, ke berapa |
-| `harga_log` | Setiap perubahan harga beli otomatis dari Average Cost |
+| Tabel Log   | Mencatat                                                           |
+| ----------- | ------------------------------------------------------------------ |
+| `stok_log`  | Setiap perubahan stok manual: siapa, kapan, dari berapa, ke berapa |
+| `harga_log` | Setiap perubahan harga beli otomatis dari Average Cost             |
 
 ### 4.6 Supplier Snapshot
 
@@ -285,6 +286,7 @@ Saat barang masuk disimpan, nama supplier saat itu di-snapshot ke kolom `nama_su
 ### 5.1 Perhitungan PPN 11%
 
 Setiap transaksi penjualan menghitung PPN secara otomatis:
+
 ```
 Grand Total = Subtotal Produk + (Subtotal × 11%)
 ```
@@ -292,6 +294,7 @@ Grand Total = Subtotal Produk + (Subtotal × 11%)
 ### 5.2 Average Cost (Rata-Rata Harga Modal)
 
 Saat barang masuk dengan harga beli yang berbeda dari harga lama, sistem menghitung harga modal baru:
+
 ```
 Harga Beli Baru = (Stok Lama × Harga Lama + Qty Masuk × Harga Masuk) / Total Stok Baru
 ```
@@ -299,23 +302,25 @@ Harga Beli Baru = (Stok Lama × Harga Lama + Qty Masuk × Harga Masuk) / Total S
 ### 5.3 Metode Pembayaran
 
 Sistem mendukung dua metode:
+
 - **Cash** — Kasir input nominal bayar, sistem hitung kembalian
 - **Transfer** — Nominal bayar otomatis = grand total, dengan field nomor referensi dan upload bukti transfer
 
 ### 5.4 Generate Kode Otomatis
 
-| Entitas | Format | Contoh |
-|---|---|---|
-| Kode Transaksi | `TRX-YYYYMMDD-NNN` | TRX-20260518-001 |
-| No. Faktur Barang Masuk | `BMK-YYYYMMDD-NNN` | BMK-20260518-001 |
-| Kode Supplier | `SUP-NNN` | SUP-001 |
-| Kode Produk | `[3 HURUF KATEGORI]-NNNN` | BAJ-0001 |
+| Entitas                 | Format                    | Contoh           |
+| ----------------------- | ------------------------- | ---------------- |
+| Kode Transaksi          | `TRX-YYYYMMDD-NNN`        | TRX-20260518-001 |
+| No. Faktur Barang Masuk | `BMK-YYYYMMDD-NNN`        | BMK-20260518-001 |
+| Kode Supplier           | `SUP-NNN`                 | SUP-001          |
+| Kode Produk             | `[3 HURUF KATEGORI]-NNNN` | BAJ-0001         |
 
 Semua kode menggunakan loop anti-bentrok (`while exists → next++`).
 
 ### 5.5 Laporan & Analitik
 
 **Admin mendapatkan:**
+
 - Filter tanggal: Hari Ini, Minggu Ini, Bulan Ini, Bulan Lalu, Tahun Ini, Custom
 - Chart omzet harian
 - Top 5 produk terlaris
@@ -323,6 +328,7 @@ Semua kode menggunakan loop anti-bentrok (`while exists → next++`).
 - Cetak laporan (print-friendly)
 
 **Kasir mendapatkan:**
+
 - Filter tanggal: Hari Ini, Minggu Ini, Bulan Ini, Custom
 - Top 10 produk terlaris (personal)
 - Cetak laporan setoran
@@ -353,6 +359,7 @@ Semua kode menggunakan loop anti-bentrok (`while exists → next++`).
 ## 7. Daftar Halaman Sistem
 
 ### Admin (11 halaman)
+
 1. Login
 2. Dashboard Admin
 3. Kategori Produk
@@ -366,6 +373,7 @@ Semua kode menggunakan loop anti-bentrok (`while exists → next++`).
 11. Logout
 
 ### Kasir (10 halaman)
+
 1. Login (shared)
 2. Dashboard Kasir
 3. Stok Produk
@@ -381,6 +389,7 @@ Semua kode menggunakan loop anti-bentrok (`while exists → next++`).
 ## 8. Tips untuk Sidang
 
 ### Alur Demo yang Disarankan
+
 1. **Login** sebagai Admin → tunjukkan dashboard
 2. **Tambah Produk** baru → tunjukkan generate kode otomatis
 3. **Barang Masuk** → tunjukkan stok bertambah + average cost
@@ -391,11 +400,12 @@ Semua kode menggunakan loop anti-bentrok (`while exists → next++`).
 8. **Kelola Akun** → tunjukkan nonaktifkan user → coba login → ditolak
 
 ### Pertanyaan yang Mungkin Ditanyakan
-- *"Bagaimana jika stok habis saat transaksi?"* → Sistem menolak otomatis dengan pesan error
-- *"Bagaimana jika admin hapus produk yang punya transaksi?"* → Soft delete, nonaktifkan saja
-- *"Bagaimana menghindari data rusak saat mati lampu?"* → Atomic Transaction (rollback otomatis)
-- *"Bagaimana keamanan antar role?"* → Session guard 2 lapis di setiap controller
-- *"Bagaimana audit trail stok?"* → Tercatat di tabel stok_log dan harga_log
+
+- _"Bagaimana jika stok habis saat transaksi?"_ → Sistem menolak otomatis dengan pesan error
+- _"Bagaimana jika admin hapus produk yang punya transaksi?"_ → Soft delete, nonaktifkan saja
+- _"Bagaimana menghindari data rusak saat mati lampu?"_ → Atomic Transaction (rollback otomatis)
+- _"Bagaimana keamanan antar role?"_ → Session guard 2 lapis di setiap controller
+- _"Bagaimana audit trail stok?"_ → Tercatat di tabel stok_log dan harga_log
 
 ---
 
