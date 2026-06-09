@@ -127,9 +127,9 @@
                 <div class="company-info">
                     <h1>Distributor Atap, Besi & Baja</h1>
                     <div class="sub">Atap Zincalume & Colorbond, Atap Lengkung, Atap Transparan<br>Wiremash, Bondek, Besi Beton, Unp, WF, Acesories DLL.</div>
-                    <h2>PT PORDJO<br>STEELINDO PERKASA</h2>
+                    <h2>TOKO SUMBER<br>KERAMIK BALARAJA</h2>
                     <div class="desc">Distributor & Supply</div>
-                    <div class="web">www.pordjosteelindoperkasa.com</div>
+                    <div class="web">www.sumberkeramikbalaraja.com</div>
                 </div>
             </div>
             <div class="header-right">
@@ -214,7 +214,7 @@
                 <div class="name">Pihak Pertama</div>
             </div>
             <div class="sign-box right">
-                <p style="margin-bottom: 5px;">PT. Pordjo Steelindo Perkasa</p>
+                <p style="margin-bottom: 5px;">TOKO SUMBER KERAMIK BALARAJA</p>
                 <div style="height: 70px; display: flex; justify-content: center; align-items: center;">
                     <img src="<?= base_url('assets/images/logo.png') ?>" style="max-height: 70px; opacity: 0.8;" alt="Stamp" onerror="this.style.display='none'">
                 </div>
@@ -225,7 +225,7 @@
         <!-- FOOTER -->
         <div class="footer">
             Jl. KH. Yakub Ghani, Babelan, Kab Bekasi &nbsp;&nbsp; Phone : 021-888-940-48 &nbsp;&nbsp; Wa: 0812-5555-4867<br>
-            email: pordjosteelindoperkasa@gmail.com
+            email: sumberkeramikbalaraja@gmail.com
         </div>
     </div>
 

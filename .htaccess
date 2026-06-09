@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /Project-Tugas-Akhir-2026/
+    RewriteBase /manajemen-stok/
 
     # Force HTTPS (if SSL available) - disabled for local development
     # RewriteCond %{HTTPS} !=on

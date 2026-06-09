@@ -552,8 +552,8 @@
 
     <div class="page-title-row">
         <div>
-            <h1>Data Supplier</h1>
-            <p>Daftar supplier PT Pordjo Steelindo Perkasa (read-only)</p>
+            <h1>Data Pabrik / Distributor</h1>
+            <p>Daftar supplier TOKO SUMBER KERAMIK BALARAJA (read-only)</p>
         </div>
     </div>
 
@@ -586,8 +586,8 @@
     <div class="main-card">
         <div class="card-toolbar">
             <div style="display:flex; align-items:center; gap:10px;">
-                <span style="font-size:14px; font-weight:700; color:#111827;">Daftar Supplier</span>
-                <span class="count-badge"><i class="fas fa-truck" style="font-size:10px;"></i><?= $total_sup ?> supplier</span>
+                <span style="font-size:14px; font-weight:700; color:#111827;">Daftar Pabrik / Distributor</span>
+                <span class="count-badge"><i class="fas fa-truck" style="font-size:10px;"></i><?= $total_sup ?>Distributor</span>
             </div>
             <div class="search-box">
                 <i class="fas fa-search"></i>
@@ -597,7 +597,7 @@
 
         <table class="data-table" id="supTable">
             <thead>
-                <tr><th>#</th><th>Supplier</th><th>Kontak</th><th>Email</th><th>Alamat</th><th>Aksi</th></tr>
+                <tr><th>#</th><th>Distributor</th><th>Kontak</th><th>Email</th><th>Alamat</th><th>Aksi</th></tr>
             </thead>
             <tbody>
                 <?php if (!empty($suppliers)): ?>

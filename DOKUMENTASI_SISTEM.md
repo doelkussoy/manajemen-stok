@@ -1,7 +1,7 @@
-# Dokumentasi Sistem Manajemen Barang PT Pordjo Steelindo Perkasa
+# Dokumentasi Sistem Manajemen Stok TOKO SUMBER KERAMIK BALARAJA
 
 > **Tugas Akhir** — Sistem Informasi Manajemen Stok & Penjualan Berbasis Web  
-> **Studi Kasus:** PT Pordjo Steelindo Perkasa (Distributor Baja & Besi)
+> **Studi Kasus:** TOKO SUMBER KERAMIK BALARAJA (Distributor Keramik)
 
 ---
 
@@ -9,7 +9,7 @@
 
 ### 1.1 Apa Itu Sistem Ini?
 
-Sistem ini adalah **aplikasi Point of Sale (POS) berbasis web** yang dirancang khusus untuk mengelola operasional harian PT Pordjo Steelindo Perkasa, sebuah perusahaan distributor baja dan besi. Sistem ini mencakup:
+Sistem ini adalah **aplikasi Point of Sale (POS) berbasis web** yang dirancang khusus untuk mengelola operasional harian TOKO SUMBER KERAMIK BALARAJA, sebuah perusahaan distributor keramik. Sistem ini mencakup:
 
 - **Manajemen Stok** — Pencatatan produk, kategori, stok masuk, dan penyesuaian stok (opname)
 - **Transaksi Penjualan** — Pemrosesan kasir dengan validasi stok real-time, perhitungan PPN 11%, dan pencetakan nota
@@ -410,5 +410,5 @@ Semua kode menggunakan loop anti-bentrok (`while exists → next++`).
 ---
 
 > **Dokumen ini dibuat pada:** 18 Mei 2026  
-> **Sistem:** Manajemen Barang PT Pordjo Steelindo Perkasa v1.0  
+> **Sistem:** Manajemen Barang TOKO SUMBER KERAMIK BALARAJA v1.0  
 > **Framework:** CodeIgniter 3 + MySQL

@@ -16,7 +16,7 @@ class Supplier extends CI_Controller {
 
     // ===== INDEX (kasir: read-only) =====
     public function index() {
-        $data['title']     = 'Data Supplier | PT Pordjo';
+        $data['title']     = 'Data Supplier | TOKO SUMBER KERAMIK';
         $data['suppliers'] = $this->M_supplier->get_all();
 
         $this->load->view('layout/header', $data);

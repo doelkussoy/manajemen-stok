@@ -146,7 +146,7 @@
             <div class="kd-stat-icon" style="background:#fffbeb; color:#d97706;"><i class="fas fa-exclamation-triangle"></i></div>
             <div>
                 <div class="kd-stat-value" style="color:#d97706;"><?= $stok_menipis_c ?></div>
-                <div class="kd-stat-label">Stok Menipis</div>
+                <div class="kd-stat-label">Stok Keramik Menipis</div>
             </div>
         </div>
         <div class="kd-stat">
@@ -199,11 +199,10 @@
                 <div class="det-card-header">
                     <div class="det-card-header-left">
                         <div class="det-hdr-icon" style="background:#eff6ff; color:#1a56db;"><i class="fas fa-list"></i></div>
-                        <h3>Daftar Produk</h3>
+                        <h3>Katalog Keramik</h3>
                     </div>
                     <span style="background:#eff6ff; color:#1a56db; font-size:12px; font-weight:600; padding:4px 12px; border-radius:20px;">
-                        <i class="fas fa-box" style="font-size:10px;"></i> <?= $total_produk ?> produk
-                    </span>
+                        <i class="fas fa-box" style="font-size:10px;"></i> <?= $total_produk ?>Keramik</span>
                 </div>
 
                 <?php if (!empty($produk)): ?>
@@ -211,7 +210,7 @@
                     <thead>
                         <tr>
                             <th style="width:40px;">#</th>
-                            <th>Produk</th>
+                            <th>Keramik</th>
                             <th>Harga Jual</th>
                             <th>Stok</th>
                             <th>Status</th>
@@ -295,7 +294,7 @@
                 <div class="side-info-row">
                     <div class="side-icon" style="background:#eff6ff; color:#1a56db;"><i class="fas fa-tag"></i></div>
                     <div>
-                        <span class="side-label">Nama Kategori</span>
+                        <span class="side-label">Jenis Keramik</span>
                         <span class="side-value"><?= htmlspecialchars($kategori['nama_kategori']) ?></span>
                     </div>
                 </div>
@@ -303,28 +302,28 @@
                     <div class="side-icon" style="background:#eff6ff; color:#1a56db;"><i class="fas fa-cube"></i></div>
                     <div>
                         <span class="side-label">Total Jenis Produk</span>
-                        <span class="side-value"><?= $total_produk ?> produk</span>
+                        <span class="side-value"><?= $total_produk ?>Keramik</span>
                     </div>
                 </div>
                 <div class="side-info-row">
                     <div class="side-icon" style="background:#f0fdf4; color:#16a34a;"><i class="fas fa-check-circle"></i></div>
                     <div>
                         <span class="side-label">Stok Aman</span>
-                        <span class="side-value" style="color:#16a34a;"><?= $stok_aman_c ?> produk</span>
+                        <span class="side-value" style="color:#16a34a;"><?= $stok_aman_c ?>Keramik</span>
                     </div>
                 </div>
                 <div class="side-info-row">
                     <div class="side-icon" style="background:#fffbeb; color:#d97706;"><i class="fas fa-exclamation-triangle"></i></div>
                     <div>
-                        <span class="side-label">Stok Menipis (≤10)</span>
-                        <span class="side-value" style="color:#d97706;"><?= $stok_menipis_c ?> produk</span>
+                        <span class="side-label">Stok Keramik Menipis (≤10)</span>
+                        <span class="side-value" style="color:#d97706;"><?= $stok_menipis_c ?>Keramik</span>
                     </div>
                 </div>
                 <div class="side-info-row">
                     <div class="side-icon" style="background:#fef2f2; color:#dc2626;"><i class="fas fa-times-circle"></i></div>
                     <div>
                         <span class="side-label">Stok Habis</span>
-                        <span class="side-value" style="color:#dc2626;"><?= $stok_habis_c ?> produk</span>
+                        <span class="side-value" style="color:#dc2626;"><?= $stok_habis_c ?>Keramik</span>
                     </div>
                 </div>
                 <div class="side-info-row">

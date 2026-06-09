@@ -104,7 +104,7 @@ class M_purchase extends CI_Model {
             ]);
 
             // [4] PERHITUNGAN AVERAGE COST & PENAMBAHAN STOK OTOMATIS KE GUDANG UTAMA
-            // Ambil data produk lama terlebih dahulu untuk mendapat stok lama dan harga beli lama
+            // Ambil data keramik lama terlebih dahulu untuk mendapat stok lama dan harga beli lama
             $produk_lama = $this->db->get_where('products', ['id_product' => $item['id_product']])->row_array();
             if ($produk_lama) {
                 $stok_lama = (int)$produk_lama['stok'];

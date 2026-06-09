@@ -375,7 +375,7 @@
                 <div class="detail-card-header"><div class="detail-card-header header-icon" style="background:#ecfdf5; color:#059669;"><i class="fas fa-list"></i></div><h3>Daftar Item (<?= count($detail) ?> produk)</h3></div>
                 <div class="detail-card-body" style="padding:0;">
                     <table class="items-table">
-                        <thead><tr><th>#</th><th>Produk</th><th>Kategori</th><th>Harga Jual</th><th>Qty</th><th>Subtotal</th></tr></thead>
+                        <thead><tr><th>#</th><th>Keramik</th><th>Jenis Keramik</th><th>Harga Jual</th><th>Qty</th><th>Subtotal</th></tr></thead>
                         <tbody>
                             <?php foreach ($detail as $i => $d): ?>
                             <tr>
@@ -398,7 +398,7 @@
             <div class="summary-card">
                 <div class="summary-header"><h3><i class="fas fa-receipt" style="color:#1a56db; margin-right:6px;"></i>Ringkasan</h3></div>
                 <div class="summary-body">
-                    <div class="summary-row"><span class="label">Total Item</span><span class="value"><?= count($detail) ?> produk</span></div>
+                    <div class="summary-row"><span class="label">Total Item</span><span class="value"><?= count($detail) ?>Keramik</span></div>
                     <div class="summary-row"><span class="label">Total Qty</span><span class="value"><?= array_sum(array_column($detail, 'qty')) ?></span></div>
                     <div class="summary-total" style="background: linear-gradient(135deg, #1a56db, #0d3fa6);"><div class="label" style="color:rgba(255,255,255,0.8);">Total Harga</div><div class="value" style="color:#fff;">Rp <?= number_format($header['total_harga'], 0, ',', '.') ?></div></div>
                     <div class="summary-row" style="margin-top:14px;"><span class="label">Metode Pembayaran</span><span class="value"><?= strtoupper($header['metode_pembayaran'] ?? 'CASH') ?></span></div>

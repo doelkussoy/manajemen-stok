@@ -50,7 +50,7 @@ class Laporan extends CI_Controller {
                 break;
         }
 
-        $data['title']        = 'Laporan Penjualan | PT Pordjo';
+        $data['title']        = 'Laporan Penjualan | TOKO SUMBER KERAMIK';
         $data['tgl_awal']     = $tgl_awal;
         $data['tgl_akhir']    = $tgl_akhir;
         $data['preset']       = $preset;
@@ -83,7 +83,7 @@ class Laporan extends CI_Controller {
         $tgl_awal  = $this->input->get('tgl_awal')  ?: date('Y-m-01');
         $tgl_akhir = $this->input->get('tgl_akhir') ?: date('Y-m-d');
 
-        $data['title']        = 'Cetak Laporan Penjualan | PT Pordjo';
+        $data['title']        = 'Cetak Laporan Penjualan | TOKO SUMBER KERAMIK';
         $data['tgl_awal']     = $tgl_awal;
         $data['tgl_akhir']    = $tgl_akhir;
         $data['sales']        = $this->M_sale->get_laporan($tgl_awal, $tgl_akhir);

@@ -15,7 +15,7 @@ class Kategori extends CI_Controller {
     }
 
     public function index() {
-        $data['title']    = 'Kategori Produk | PT Pordjo';
+        $data['title']    = 'Kategori Produk | TOKO SUMBER KERAMIK';
         $data['kategori'] = $this->M_kategori->get_all();
         $this->load->view('layout/header', $data);
         $this->load->view('layout/sidebar', $data);
@@ -49,7 +49,7 @@ class Kategori extends CI_Controller {
             redirect('admin/kategori'); return;
         }
         if ($this->M_kategori->update($id, ['nama_kategori' => $nama])) {
-            $this->session->set_flashdata('success', 'Kategori berhasil diperbarui.');
+            $this->session->set_flashdata('success', 'Jenis Keramik berhasil diperbarui.');
         } else {
             $this->session->set_flashdata('error', 'Gagal memperbarui kategori.');
         }
@@ -65,7 +65,7 @@ class Kategori extends CI_Controller {
             redirect('admin/kategori'); return;
         }
         if ($this->M_kategori->delete($id)) {
-            $this->session->set_flashdata('success', 'Kategori berhasil dihapus.');
+            $this->session->set_flashdata('success', 'Jenis Keramik berhasil dihapus.');
         } else {
             $this->session->set_flashdata('error', 'Gagal menghapus kategori.');
         }
@@ -87,7 +87,7 @@ class Kategori extends CI_Controller {
             return;
         }
 
-        $data['title']    = 'Detail Kategori: ' . $kat['nama_kategori'] . ' | PT Pordjo';
+        $data['title']    = 'Detail Kategori: ' . $kat['nama_kategori'] . ' | TOKO SUMBER KERAMIK';
         $data['kategori'] = $kat;
         $data['produk']   = $this->M_produk->get_by_category($id_category);
 

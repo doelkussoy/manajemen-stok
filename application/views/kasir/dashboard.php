@@ -531,7 +531,7 @@
                 <div class="search-produk-wrap">
                     <div class="search-input-box">
                         <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Cari nama produk..." id="searchProdukKasir">
+                        <input type="text" placeholder="Cari nama Keramik..." id="searchProdukKasir">
                     </div>
                 </div>
                 <div class="stock-check-list" id="stockCheckList">

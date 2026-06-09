@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laporan Data Produk <?= !empty($filter_kategori) ? ' - ' . htmlspecialchars($filter_kategori) : '' ?></title>
+    <title>Laporan Data Keramik <?= !empty($filter_kategori) ? ' - ' . htmlspecialchars($filter_kategori) : '' ?></title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap">
     <style>
         @page { size: A4; margin: 10mm; }
@@ -121,19 +121,19 @@
                 <div class="company-info">
                     <h1>Distributor Atap, Besi &amp; Baja</h1>
                     <div class="sub">Atap Zincalume &amp; Colorbond, Atap Lengkung, Atap Transparan<br>Wiremash, Bondek, Besi Beton, Unp, WF, Acesories DLL.</div>
-                    <h2>PT PORDJO<br>STEELINDO PERKASA</h2>
+                    <h2>TOKO SUMBER<br>KERAMIK BALARAJA</h2>
                     <div class="desc">Distributor &amp; Supply</div>
-                    <div class="web">www.pordjosteelindoperkasa.com</div>
+                    <div class="web">www.sumberkeramikbalaraja.com</div>
                 </div>
             </div>
             <div class="header-right">
                 <h3>Katalog & Stok Produk</h3>
                 <div class="info-box">
                     <div>
-                        <div class="label">Kategori</div>
+                        <div class="label">Jenis Keramik</div>
                         <div class="value"><?= !empty($filter_kategori) ? htmlspecialchars($filter_kategori) : 'Semua Kategori' ?></div>
                         <div class="label">Total Item</div>
-                        <div class="value"><?= count($produk) ?> Produk</div>
+                        <div class="value"><?= count($produk) ?>Keramik</div>
                     </div>
                     <div>
                         <div class="label">Dicetak</div>
@@ -153,12 +153,12 @@
                 <tr>
                     <th class="text-center" style="width: 30px;">No</th>
                     <th style="width: 80px;">Kode</th>
-                    <th>Nama Produk</th>
-                    <th>Kategori</th>
+                    <th>Motif/Nama Keramik</th>
+                    <th>Jenis Keramik</th>
                     <th class="text-right">Harga Beli (Rp)</th>
                     <th class="text-right">Harga Jual (Rp)</th>
                     <th class="text-center">Stok</th>
-                    <th>Satuan</th>
+                    <th>Satuan (Dus/m²)</th>
                 </tr>
             </thead>
             <tbody>
@@ -192,7 +192,7 @@
                     </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <tr><td colspan="8" class="text-center" style="padding:20px; color:#9ca3af;">Data produk kosong.</td></tr>
+                    <tr><td colspan="8" class="text-center" style="padding:20px; color:#9ca3af;">Data keramik kosong.</td></tr>
                 <?php endif; ?>
             </tbody>
         </table>
@@ -203,7 +203,7 @@
                 <p>Mengetahui,</p>
                 <div class="sign-space"></div>
                 <div class="sign-name">Pimpinan</div>
-                <div style="font-size:10px; color:#555;">PT. Pordjo Steelindo Perkasa</div>
+                <div style="font-size:10px; color:#555;">TOKO SUMBER KERAMIK BALARAJA</div>
             </div>
             <div class="sign-box">
                 <p>Bekasi, <?= date('d M Y') ?></p>
@@ -216,7 +216,7 @@
         <!-- FOOTER NOTE -->
         <div class="footer-note">
             Jl. KH. Yakub Ghani, Babelan, Kab Bekasi &nbsp;&nbsp; Phone : 021-888-940-48 &nbsp;&nbsp; Wa: 0812-5555-4867<br>
-            email: pordjosteelindoperkasa@gmail.com
+            email: sumberkeramikbalaraja@gmail.com
         </div>
 
     </div>

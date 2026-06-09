@@ -39,7 +39,7 @@ class Laporan_kasir extends CI_Controller {
                 break;
         }
 
-        $data['title']        = 'Laporan Penjualan Saya | PT Pordjo';
+        $data['title']        = 'Laporan Penjualan Saya | TOKO SUMBER KERAMIK';
         $data['tgl_awal']     = $tgl_awal;
         $data['tgl_akhir']    = $tgl_akhir;
         $data['preset']       = $preset;
@@ -64,7 +64,7 @@ class Laporan_kasir extends CI_Controller {
         $tgl_awal  = $this->input->get('tgl_awal')  ?: date('Y-m-d');
         $tgl_akhir = $this->input->get('tgl_akhir') ?: date('Y-m-d');
 
-        $data['title']        = 'Cetak Laporan Setoran | PT Pordjo';
+        $data['title']        = 'Cetak Laporan Setoran | TOKO SUMBER KERAMIK';
         $data['tgl_awal']     = $tgl_awal;
         $data['tgl_akhir']    = $tgl_akhir;
         $data['nama_kasir']   = $this->session->userdata('nama') ?: $this->session->userdata('username');

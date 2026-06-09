@@ -146,7 +146,7 @@
                     <th>#</th>
                     <th>No Faktur</th>
                     <th>Tanggal</th>
-                    <th>Supplier</th>
+                    <th>Distributor</th>
                     <th>Input Oleh</th>
                     <th>Total Bayar</th>
                     <th>Aksi</th>

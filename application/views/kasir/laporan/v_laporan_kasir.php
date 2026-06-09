@@ -596,13 +596,13 @@
         <!-- TOP PRODUK -->
         <div class="main-card" style="margin:0;">
             <div class="card-header-custom">
-                <h3><span class="header-icon" style="background:#fffbeb; color:#d97706;"><i class="fas fa-trophy"></i></span>Produk Terlaris Saya</h3>
+                <h3><span class="header-icon" style="background:#fffbeb; color:#d97706;"><i class="fas fa-trophy"></i></span>Keramik Terlaris Saya</h3>
                 <span class="count-badge">Top <?= count($top_produk) ?></span>
             </div>
             <?php if (!empty($top_produk)): ?>
             <?php $max_qty = (int)($top_produk[0]['total_qty'] ?? 1); ?>
             <table class="data-table">
-                <thead><tr><th>#</th><th>Produk</th><th>Terjual</th><th>Pendapatan</th></tr></thead>
+                <thead><tr><th>#</th><th>Keramik</th><th>Terjual</th><th>Pendapatan</th></tr></thead>
                 <tbody>
                     <?php foreach ($top_produk as $i => $tp): ?>
                     <tr>
@@ -640,7 +640,7 @@
                     </div>
                     <div>
                         <div style="font-size:16px; font-weight:700; color:#111827;"><?= htmlspecialchars($nama_kasir) ?></div>
-                        <div style="font-size:12px; color:#9ca3af;">Kasir · PT Pordjo Steelindo</div>
+                        <div style="font-size:12px; color:#9ca3af;">Kasir · TOKO SUMBER KERAMIK BALARAJA</div>
                     </div>
                 </div>
                 <div style="background:#f8fafc; border:1px solid #e8ecf0; border-radius:10px; padding:14px;">

@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="assets/images/logo.png" alt="Logo PT Pordjo" width="160">
+  <img src="assets/images/logo.png" alt="Logo TOKO SUMBER KERAMIK" width="160">
 </p>
 
 <h1 align="center">Sistem Manajemen Barang</h1>
-<h3 align="center">PT Pordjo Steelindo Perkasa</h3>
+<h3 align="center">TOKO SUMBER KERAMIK BALARAJA</h3>
 
 <p align="center">
-  <em>Aplikasi Point of Sale (POS) berbasis web untuk mengelola stok, transaksi penjualan, barang masuk, dan laporan keuangan pada perusahaan distributor baja & besi.</em>
+  <em>Aplikasi Point of Sale (POS) berbasis web untuk mengelola stok, transaksi penjualan, barang masuk, dan laporan keuangan pada perusahaan distributor keramik.</em>
 </p>
 
 <p align="center">
@@ -35,7 +35,7 @@
 
 ## 📖 Tentang Proyek
 
-**Sistem Manajemen Barang PT Pordjo Steelindo Perkasa** adalah aplikasi web yang dibangun sebagai **Tugas Akhir** untuk mengatasi permasalahan pencatatan stok dan transaksi yang sebelumnya dilakukan secara manual.
+**Sistem Manajemen Stok TOKO SUMBER KERAMIK BALARAJA** adalah aplikasi web yang dibangun sebagai **Tugas Akhir** untuk mengatasi permasalahan pencatatan stok dan transaksi yang sebelumnya dilakukan secara manual.
 
 Sistem ini menerapkan arsitektur **MVC (Model-View-Controller)** menggunakan framework **CodeIgniter 3** dengan dua peran pengguna: **Admin** dan **Kasir**, masing-masing dengan hak akses yang berbeda.
 
@@ -282,6 +282,6 @@ Proyek ini dibuat untuk keperluan **Tugas Akhir** akademik dan tidak untuk distr
 ---
 
 <p align="center">
-  <strong>PT Pordjo Steelindo Perkasa</strong><br>
+  <strong>TOKO SUMBER KERAMIK BALARAJA</strong><br>
   <em>Sistem Manajemen Barang — Tugas Akhir 2026</em>
 </p>

@@ -313,7 +313,7 @@
                 </div>
                 <div class="info-grid">
                     <div class="info-cell">
-                        <span class="info-label"><i class="fas fa-truck" style="margin-right:4px;"></i>Supplier</span>
+                        <span class="info-label"><i class="fas fa-truck" style="margin-right:4px;"></i>Distributor</span>
                         <span class="info-value"><?= htmlspecialchars($header['nama_supplier'] ?? '-') ?></span>
                     </div>
                     <div class="info-cell">
@@ -350,7 +350,7 @@
             <!-- ITEMS TABLE -->
             <div class="det-card">
                 <div class="det-card-header" style="display:flex; align-items:center; justify-content:space-between;">
-                    <h3>Daftar Produk</h3>
+                    <h3>Katalog Keramik</h3>
                     <span style="background:#eff6ff; color:#1a56db; font-size:12px; font-weight:600; padding:4px 10px; border-radius:20px;">
                         <?= count($detail) ?> item
                     </span>
@@ -359,7 +359,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Produk</th>
+                            <th>Keramik</th>
                             <th>Qty</th>
                             <th>Harga Beli</th>
                             <th>Subtotal</th>

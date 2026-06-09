@@ -181,11 +181,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Supplier <span>*</span></label>
+                        <label class="form-label">Distributor<span>*</span></label>
                         <div class="input-wrap">
                             <i class="fas fa-truck input-icon"></i>
                             <select name="id_supplier" class="form-control" required onchange="updateSummary()">
-                                <option value="" disabled selected>-- Pilih Supplier --</option>
+                                <option value="" disabled selected>-- Pilih Pabrik/Distributor --</option>
                                 <?php foreach ($suppliers as $s): ?>
                                 <option value="<?= $s['id_supplier'] ?>"><?= htmlspecialchars($s['nama_supplier']) ?> (<?= $s['kode_supplier'] ?>)</option>
                                 <?php endforeach; ?>
@@ -214,7 +214,7 @@
             <div class="form-card">
                 <div class="form-card-header">
                     <div class="form-card-header header-icon" style="background:#eff6ff; color:#1a56db;"><i class="fas fa-boxes"></i></div>
-                    <h3>Daftar Produk</h3>
+                    <h3>Katalog Keramik</h3>
                 </div>
                 <div class="form-card-body">
                     <div class="items-header">
@@ -228,7 +228,7 @@
                         <table class="items-table">
                             <thead>
                                 <tr>
-                                    <th style="width:35%;">Produk</th>
+                                    <th style="width:35%;">Keramik</th>
                                     <th style="width:15%;">Qty</th>
                                     <th style="width:22%;">Harga Beli/Satuan</th>
                                     <th style="width:20%;">Subtotal</th>
@@ -262,7 +262,7 @@
                         <span class="value" style="font-family:'Courier New', monospace; font-size:12px; color:#1a56db;"><?= $no_faktur ?></span>
                     </div>
                     <div class="summary-row">
-                        <span class="label">Supplier</span>
+                        <span class="label">Distributor</span>
                         <span class="value" id="sum-supplier" style="font-size:12px;">—</span>
                     </div>
                     <div class="summary-row">
@@ -345,7 +345,7 @@
         row.innerHTML = `
             <td>
                 <select name="id_product[]" class="item-select" onchange="updateRow(${idx})" required>
-                    <option value="" disabled selected>-- Pilih Produk --</option>
+                    <option value="" disabled selected>-- Pilih Keramik --</option>
                     ${options}
                 </select>
             </td>
@@ -459,7 +459,7 @@
             totalQty += parseInt(qty?.value)||0;
         });
         if (!valid) {
-            alert('Lengkapi semua data produk (pilih produk, qty, dan harga beli)!');
+            alert('Lengkapi semua data keramik (pilih produk, qty, dan harga beli)!');
             return;
         }
         // Show confirmation modal
@@ -531,7 +531,7 @@
             <h5>Simpan transaksi barang masuk?</h5>
             <p>Pastikan data sudah benar.<br><span style="color:#d97706; font-weight:600;">⚡ Stok produk akan otomatis bertambah.</span></p>
             <div class="bm-confirm-grid">
-                <div class="bm-confirm-item"><span class="bci-label">Supplier</span><span class="bci-value" id="confirmBmSupplier">—</span></div>
+                <div class="bm-confirm-item"><span class="bci-label">Distributor</span><span class="bci-value" id="confirmBmSupplier">—</span></div>
                 <div class="bm-confirm-item"><span class="bci-label">Jumlah Item</span><span class="bci-value" id="confirmBmItems">0</span></div>
                 <div class="bm-confirm-item"><span class="bci-label">Total Qty</span><span class="bci-value" id="confirmBmQty">0</span></div>
                 <div class="bm-confirm-item highlight"><span class="bci-label">Total Bayar</span><span class="bci-value" id="confirmBmTotal">Rp 0</span></div>

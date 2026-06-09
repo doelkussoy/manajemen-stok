@@ -213,7 +213,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Produk</th>
+                        <th>Keramik</th>
                         <th>Terjual</th>
                         <th>Pendapatan</th>
                     </tr>
@@ -352,7 +352,7 @@
 </div>
 
 <!-- CHART.JS CDN -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="<?= base_url('assets/plugins/chartjs/chart.umd.min.js') ?>"></script>
 
 <script>
     // ===== CHART OMZET HARIAN =====

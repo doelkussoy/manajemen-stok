@@ -457,7 +457,7 @@
                     <th>#</th>
                     <th>No Faktur</th>
                     <th>Tanggal</th>
-                    <th>Supplier</th>
+                    <th>Distributor</th>
                     <th>Total Bayar</th>
                     <th>Aksi</th>
                 </tr>

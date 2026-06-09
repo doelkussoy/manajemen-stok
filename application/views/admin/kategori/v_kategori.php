@@ -87,8 +87,8 @@
     <!-- PAGE TITLE -->
     <div class="page-title-row">
         <div>
-            <h1>Kategori Produk</h1>
-            <p>Kelola kategori baja dan besi PT Pordjo Steelindo Perkasa</p>
+            <h1>Jenis Keramik</h1>
+            <p>Kelola kategori keramik TOKO SUMBER KERAMIK BALARAJA</p>
         </div>
         <button class="btn-primary-custom" onclick="openModal('modalTambah')">
             <i class="fas fa-plus"></i> Tambah Kategori
@@ -107,12 +107,12 @@
     <div class="main-card">
         <div class="card-toolbar">
             <div style="display:flex; align-items:center; gap:10px;">
-                <span style="font-size:14px; font-weight:700; color:#111827;">Daftar Kategori</span>
-                <span class="count-badge"><i class="fas fa-tag" style="font-size:10px;"></i><?= count($kategori) ?> kategori</span>
+                <span style="font-size:14px; font-weight:700; color:#111827;">Daftar Jenis Keramik</span>
+                <span class="count-badge"><i class="fas fa-tag" style="font-size:10px;"></i><?= count($kategori) ?>Jenis Keramik</span>
             </div>
             <div class="search-box">
                 <i class="fas fa-search"></i>
-                <input type="text" id="searchKat" placeholder="Cari kategori..." onkeyup="filterTable('searchKat','katTable')">
+                <input type="text" id="searchKat" placeholder="Cari Jenis Keramik..." onkeyup="filterTable('searchKat','katTable')">
             </div>
         </div>
 
@@ -120,7 +120,7 @@
             <thead>
                 <tr>
                     <th style="width:50px;">#</th>
-                    <th>Nama Kategori</th>
+                    <th>Jenis Keramik</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -169,13 +169,13 @@
     <div class="modal-overlay" id="modalTambah">
         <div class="modal-box">
             <div class="modal-header">
-                <h4><i class="fas fa-plus-circle" style="color:#1a56db; margin-right:8px;"></i>Tambah Kategori</h4>
+                <h4><i class="fas fa-plus-circle" style="color:#1a56db; margin-right:8px;"></i>Tambah Jenis Keramik</h4>
                 <button class="modal-close" onclick="closeModal('modalTambah')"><i class="fas fa-times"></i></button>
             </div>
             <form action="<?= site_url('admin/kategori/tambah') ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group-custom" style="margin-bottom:0;">
-                        <label class="form-label-custom">Nama Kategori <span>*</span></label>
+                        <label class="form-label-custom">Jenis Keramik <span>*</span></label>
                         <div class="input-wrap">
                             <i class="fas fa-tag input-icon"></i>
                             <input type="text" name="nama_kategori" class="form-control-custom" placeholder="Contoh: Besi Beton" required>
@@ -194,14 +194,14 @@
     <div class="modal-overlay" id="modalEdit">
         <div class="modal-box">
             <div class="modal-header">
-                <h4><i class="fas fa-pen" style="color:#1a56db; margin-right:8px;"></i>Edit Kategori</h4>
+                <h4><i class="fas fa-pen" style="color:#1a56db; margin-right:8px;"></i>Edit Jenis Keramik</h4>
                 <button class="modal-close" onclick="closeModal('modalEdit')"><i class="fas fa-times"></i></button>
             </div>
             <form action="<?= site_url('admin/kategori/update') ?>" method="post">
                 <input type="hidden" name="id_category" id="edit_id">
                 <div class="modal-body">
                     <div class="form-group-custom" style="margin-bottom:0;">
-                        <label class="form-label-custom">Nama Kategori <span>*</span></label>
+                        <label class="form-label-custom">Jenis Keramik <span>*</span></label>
                         <div class="input-wrap">
                             <i class="fas fa-tag input-icon"></i>
                             <input type="text" name="nama_kategori" id="edit_nama" class="form-control-custom" required>
@@ -220,15 +220,15 @@
     <div class="modal-overlay" id="modalDelete">
         <div class="modal-box">
             <div class="modal-header">
-                <h4><i class="fas fa-trash" style="color:#dc2626; margin-right:8px;"></i>Hapus Kategori</h4>
+                <h4><i class="fas fa-trash" style="color:#dc2626; margin-right:8px;"></i>Hapus Jenis Keramik</h4>
                 <button class="modal-close" onclick="closeModal('modalDelete')"><i class="fas fa-times"></i></button>
             </div>
             <form action="<?= site_url('admin/kategori/hapus') ?>" method="post">
                 <input type="hidden" name="id_category" id="delete_id">
                 <div class="delete-modal-body">
                     <div class="delete-icon"><i class="fas fa-exclamation-triangle"></i></div>
-                    <h5>Hapus Kategori?</h5>
-                    <p>Kategori <strong id="delete_nama"></strong> akan dihapus. Pastikan tidak ada produk yang masih menggunakan kategori ini.</p>
+                    <h5>Hapus Jenis Keramik?</h5>
+                    <p>Jenis Keramik<strong id="delete_nama"></strong> akan dihapus. Pastikan tidak ada produk yang masih menggunakan kategori ini.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn-cancel" onclick="closeModal('modalDelete')">Batal</button>

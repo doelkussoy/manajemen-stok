@@ -20,7 +20,7 @@ class Barang_masuk extends CI_Controller {
     public function index() {
         $id_user = $this->session->userdata('id_user');
 
-        $data['title']     = 'Barang Masuk | PT Pordjo';
+        $data['title']     = 'Barang Masuk | TOKO SUMBER KERAMIK';
         $data['purchases'] = $this->M_purchase->get_by_user($id_user);
 
         $this->load->view('layout/header', $data);
@@ -31,7 +31,7 @@ class Barang_masuk extends CI_Controller {
 
     // ===== FORM INPUT (kasir) =====
     public function create() {
-        $data['title']     = 'Tambah Barang Masuk | PT Pordjo';
+        $data['title']     = 'Tambah Barang Masuk | TOKO SUMBER KERAMIK';
         $data['suppliers'] = $this->M_supplier->get_all();
         $data['produk']    = $this->M_produk->get_all();
         $data['no_faktur'] = $this->M_purchase->generate_no_faktur();
@@ -86,7 +86,7 @@ class Barang_masuk extends CI_Controller {
         }
 
         if (empty($items)) {
-            $this->session->set_flashdata('error', 'Data produk tidak valid, harap periksa kembali.');
+            $this->session->set_flashdata('error', 'Data keramik tidak valid, harap periksa kembali.');
             redirect('kasir/barang_masuk/create');
             return;
         }
@@ -141,7 +141,7 @@ class Barang_masuk extends CI_Controller {
 
     // ===== DETAIL (dengan validasi kepemilikan) =====
     public function detail($id_purchase) {
-        $data['title']  = 'Detail Barang Masuk | PT Pordjo';
+        $data['title']  = 'Detail Barang Masuk | TOKO SUMBER KERAMIK';
         $data['header'] = $this->M_purchase->get_by_id($id_purchase);
         $data['detail'] = $this->M_purchase->get_detail($id_purchase);
 

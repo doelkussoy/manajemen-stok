@@ -6,7 +6,7 @@
   <title><?= $title; ?></title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="<?= base_url('assets/plugins/fontawesome-free/fontawesome-free-5.15.4-web/css/all.min.css') ?>">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="<?= base_url('assets/css/theme.css?v=' . time()) ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/responsive.css?v=' . time()) ?>">
@@ -29,17 +29,23 @@
       transition: margin-left 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
     }
 
-    /* Ensure main layout is offset by the fixed sidebar to avoid overlap */
-    body:not(.sidebar-collapse) .main-header,
-    body:not(.sidebar-collapse) .content-wrapper,
-    body:not(.sidebar-collapse) .main-footer {
-      margin-left: var(--sidebar-width) !important;
+    @media (min-width: 992px) {
+      body:not(.sidebar-collapse) .main-header,
+      body:not(.sidebar-collapse) .content-wrapper,
+      body:not(.sidebar-collapse) .main-footer {
+        margin-left: var(--sidebar-width) !important;
+      }
+      body.sidebar-collapse .main-header,
+      body.sidebar-collapse .content-wrapper,
+      body.sidebar-collapse .main-footer {
+        margin-left: 73px !important;
+      }
     }
 
-    body.sidebar-collapse .main-header,
-    body.sidebar-collapse .content-wrapper,
-    body.sidebar-collapse .main-footer {
-      margin-left: 0 !important;
+    @media (max-width: 991px) {
+      .main-header, .content-wrapper, .main-footer {
+        margin-left: 0 !important;
+      }
     }
 
     /* ===== GREETING CARD TRIGGER ===== */
@@ -292,6 +298,22 @@
     .popup-logout-btn i { font-size: 13px; }
 
     .popup-logout-btn span { flex: 1; }
+    
+    @media (max-width: 991px) {
+      .main-header, .content-wrapper, .main-footer {
+        margin-left: 0 !important;
+      }
+    }
+    
+    .mobile-toggle-btn-container {
+      display: none !important;
+    }
+    @media (max-width: 991px) {
+      .mobile-toggle-btn-container {
+        display: flex !important;
+        align-items: center;
+      }
+    }
   </style>
 </head>
 
@@ -302,20 +324,22 @@
   <nav class="main-header navbar navbar-expand navbar-white navbar-light bg-glass"
        style="border-bottom:1px solid var(--border-light); min-height:64px; display:flex; align-items:center;">
 
-    <!-- Sidebar Toggle -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button" style="display:flex; align-items:center;">
-          <i class="fas fa-bars" style="color:#6b7280; font-size:16px;"></i>
-        </a>
-      </li>
-    </ul>
+    <!-- Mobile Hamburger Toggle -->
+    <div class="mobile-toggle-btn-container" style="padding-left:16px;">
+      <a href="#" id="mobileSidebarToggleBtn" style="color:#6b7280; width: 40px; height: 40px; display:flex; align-items:center; justify-content:center; border-radius:8px; background:var(--bg-body); transition:background 0.2s; text-decoration:none !important;">
+        <i class="fas fa-bars" style="font-size:16px;"></i>
+      </a>
+    </div>
 
     <!-- System Title -->
-    <span class="d-none d-md-block"
-          style="font-family:'DM Sans',sans-serif; font-size:14px; color:#4b5563; font-weight:500; padding-left:8px; letter-spacing:0.2px;">
-      Sistem Manajemen Barang PT Pordjo Steelindo Perkasa
-    </span>
+    <div class="d-none d-md-flex align-items-center" style="padding-left:16px;">
+      <div style="background: rgba(26, 86, 219, 0.08); padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(26, 86, 219, 0.15); display: flex; align-items: center; gap: 8px;">
+        <i class="fas fa-layer-group" style="color: #1a56db; font-size: 13px;"></i>
+        <span style="font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 700; background: linear-gradient(135deg, #111827, #374151); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 0.3px;">
+          Sistem Manajemen Stok <span style="color: #1a56db; -webkit-text-fill-color: #1a56db;">TOKO SUMBER KERAMIK BALARAJA</span>
+        </span>
+      </div>
+    </div>
 
     <!-- Greeting Card -->
     <ul class="navbar-nav ml-auto">
@@ -401,7 +425,7 @@
                 </div>
                 <div>
                   <span class="popup-info-label">Perusahaan</span>
-                  <span class="popup-info-value">PT Pordjo Steelindo</span>
+                  <span class="popup-info-value">TOKO SUMBER KERAMIK BALARAJA</span>
                 </div>
               </div>
 

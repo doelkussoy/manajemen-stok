@@ -20,7 +20,7 @@ class Riwayat extends CI_Controller {
 
         $id_user = $this->session->userdata('id_user');
 
-        $data['title'] = 'Riwayat Transaksi | PT Pordjo';
+        $data['title'] = 'Riwayat Transaksi | TOKO SUMBER KERAMIK';
         $data['sales'] = $this->M_sale->get_by_kasir($id_user); // semua trx (DESC)
 
         // Stats

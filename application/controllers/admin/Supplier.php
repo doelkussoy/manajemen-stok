@@ -52,7 +52,7 @@ class Supplier extends CI_Controller {
     }
 
     public function index() {
-        $data['title']     = 'Data Supplier | PT Pordjo';
+        $data['title']     = 'Data Supplier | TOKO SUMBER KERAMIK';
         // Ambil semua (aktif + nonaktif) agar view bisa mengelompokkan keduanya
         $data['suppliers'] = $this->M_supplier->get_all_including_nonaktif();
         $this->load->view('layout/header', $data);
@@ -65,7 +65,7 @@ class Supplier extends CI_Controller {
         $this->load->library('form_validation');
 
         // Aturan validasi
-        $this->form_validation->set_rules('nama_supplier', 'Nama Supplier', 'required|trim', [
+        $this->form_validation->set_rules('nama_supplier', 'Nama Pabrik/Distributor', 'required|trim', [
             'required' => '%s wajib diisi!'
         ]);
         $this->form_validation->set_rules('nama_kontak', 'Nama Kontak', 'required|trim', [
@@ -119,7 +119,7 @@ class Supplier extends CI_Controller {
         $this->load->library('form_validation');
 
         // Aturan validasi sama dengan tambah
-        $this->form_validation->set_rules('nama_supplier', 'Nama Supplier', 'required|trim', [
+        $this->form_validation->set_rules('nama_supplier', 'Nama Pabrik/Distributor', 'required|trim', [
             'required' => '%s wajib diisi!'
         ]);
         $this->form_validation->set_rules('nama_kontak', 'Nama Kontak', 'required|trim', [

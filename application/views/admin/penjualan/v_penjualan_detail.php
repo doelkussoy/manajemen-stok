@@ -145,8 +145,8 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Produk</th>
-                                <th>Kategori</th>
+                                <th>Keramik</th>
+                                <th>Jenis Keramik</th>
                                 <th>Harga Jual</th>
                                 <th>Qty</th>
                                 <th>Subtotal</th>
@@ -185,7 +185,7 @@
                 <div class="summary-body">
                     <div class="summary-row">
                         <span class="label">Total Item</span>
-                        <span class="value"><?= count($detail) ?> produk</span>
+                        <span class="value"><?= count($detail) ?>Keramik</span>
                     </div>
                     <div class="summary-row">
                         <span class="label">Total Qty</span>

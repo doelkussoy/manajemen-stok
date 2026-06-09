@@ -85,7 +85,7 @@
     .input-wrap { position: relative; }
     .input-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 12px; color: #9ca3af; pointer-events: none; }
     .input-icon.top { top: 14px; transform: none; }
-    .form-control-custom { width: 100%; padding: 10px 12px 10px 36px; border: 1.5px solid #e5e7eb; border-radius: 9px; font-size: 13px; font-family: 'DM Sans', sans-serif; color: #111827; background: #fafafa; outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
+    .form-control-custom { width: 100%; box-sizing: border-box; padding: 10px 12px 10px 36px; border: 1.5px solid #e5e7eb; border-radius: 9px; font-size: 13px; font-family: 'DM Sans', sans-serif; color: #111827; background: #fafafa; outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
     .form-control-custom:focus { border-color: #1a56db; background: #fff; box-shadow: 0 0 0 3px rgba(26,86,219,0.08); }
     .form-control-custom::placeholder { color: #d1d5db; }
     textarea.form-control-custom { padding-top: 10px; resize: vertical; min-height: 80px; }
@@ -157,8 +157,8 @@
     <!-- PAGE TITLE -->
     <div class="page-title-row">
         <div>
-            <h1>Data Supplier</h1>
-            <p>Kelola data supplier PT Pordjo Steelindo Perkasa</p>
+            <h1>Data Pabrik / Distributor</h1>
+            <p>Kelola data supplier TOKO SUMBER KERAMIK BALARAJA</p>
         </div>
         <button class="btn-primary-custom" onclick="openModal('modalTambah')">
             <i class="fas fa-plus"></i> Tambah Supplier
@@ -226,8 +226,8 @@
     <div class="main-card">
         <div class="card-toolbar">
             <div style="display:flex; align-items:center; gap:10px;">
-                <span style="font-size:14px; font-weight:700; color:#111827;">Daftar Supplier Aktif</span>
-                <span class="count-badge"><i class="fas fa-truck" style="font-size:10px;"></i><?= count($suppliers_aktif) ?> supplier</span>
+                <span style="font-size:14px; font-weight:700; color:#111827;">Daftar Pabrik / Distributor Aktif</span>
+                <span class="count-badge"><i class="fas fa-truck" style="font-size:10px;"></i><?= count($suppliers_aktif) ?>Distributor</span>
             </div>
             <div class="search-box">
                 <i class="fas fa-search"></i>
@@ -239,7 +239,7 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Supplier</th>
+                    <th>Distributor</th>
                     <th>Kontak</th>
                     <th>Email</th>
                     <th>Alamat</th>
@@ -316,8 +316,7 @@
             <div style="display:flex; align-items:center; gap:10px;">
                 <span class="sn-title"><i class="fas fa-ban"></i>Supplier Nonaktif</span>
                 <span class="sn-count">
-                    <i class="fas fa-exclamation-circle"></i><?= count($suppliers_nonaktif) ?> supplier
-                </span>
+                    <i class="fas fa-exclamation-circle"></i><?= count($suppliers_nonaktif) ?>Distributor</span>
             </div>
             <span style="font-size:11.5px; color:#9ca3af;">Supplier ini memiliki riwayat transaksi sehingga tidak dapat dihapus permanen.</span>
         </div>
@@ -325,7 +324,7 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Supplier</th>
+                    <th>Distributor</th>
                     <th>Kontak</th>
                     <th>Email</th>
                     <th>Status</th>
@@ -385,7 +384,7 @@
                 <div class="delete-modal-body">
                     <div class="delete-icon" style="background:#f0fdf4; color:#16a34a;"><i class="fas fa-redo"></i></div>
                     <h5>Aktifkan Kembali Supplier?</h5>
-                    <p>Supplier <strong id="aktif_nama"></strong> akan diaktifkan dan dapat dipilih kembali di form transaksi baru.</p>
+                    <p>Distributor<strong id="aktif_nama"></strong> akan diaktifkan dan dapat dipilih kembali di form transaksi baru.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn-cancel" onclick="closeModal('modalAktifkan')">Batal</button>
@@ -400,7 +399,7 @@
     <div class="modal-overlay" id="modalTambah">
         <div class="modal-box">
             <div class="modal-header">
-                <h4><i class="fas fa-plus-circle" style="color:#1a56db; margin-right:8px;"></i>Tambah Supplier</h4>
+                <h4><i class="fas fa-plus-circle" style="color:#1a56db; margin-right:8px;"></i>Tambah Distributor</h4>
                 <button class="modal-close" onclick="closeModal('modalTambah')"><i class="fas fa-times"></i></button>
             </div>
             <form action="<?= site_url('admin/supplier/tambah') ?>" method="post">
@@ -415,7 +414,7 @@
                         <span style="font-size:11px; color:#9ca3af; margin-top:4px; display:block;"><i class="fas fa-info-circle" style="margin-right:3px;"></i>Kode akan dibuat otomatis setelah disimpan</span>
                     </div>
                     <div class="form-group-custom">
-                        <label class="form-label-custom">Nama Supplier <span>*</span></label>
+                        <label class="form-label-custom">Nama Pabrik/Distributor <span>*</span></label>
                         <div class="input-wrap">
                             <i class="fas fa-building input-icon"></i>
                             <input type="text" name="nama_supplier" class="form-control-custom" placeholder="Nama perusahaan" required>
@@ -472,7 +471,7 @@
     <div class="modal-overlay" id="modalEdit">
         <div class="modal-box">
             <div class="modal-header">
-                <h4><i class="fas fa-pen" style="color:#1a56db; margin-right:8px;"></i>Edit Supplier</h4>
+                <h4><i class="fas fa-pen" style="color:#1a56db; margin-right:8px;"></i>Edit Distributor</h4>
                 <button class="modal-close" onclick="closeModal('modalEdit')"><i class="fas fa-times"></i></button>
             </div>
             <form action="<?= site_url('admin/supplier/update') ?>" method="post">
@@ -489,7 +488,7 @@
                         <span style="font-size:11px; color:#9ca3af; margin-top:4px; display:block;"><i class="fas fa-lock" style="margin-right:3px;"></i>Kode supplier tidak dapat diubah</span>
                     </div>
                     <div class="form-group-custom">
-                        <label class="form-label-custom">Nama Supplier <span>*</span></label>
+                        <label class="form-label-custom">Nama Pabrik/Distributor <span>*</span></label>
                         <div class="input-wrap">
                             <i class="fas fa-building input-icon"></i>
                             <input type="text" name="nama_supplier" id="edit_nama" class="form-control-custom" required>
@@ -617,7 +616,7 @@
     <div class="modal-overlay" id="modalDelete">
         <div class="modal-box modal-sm">
             <div class="modal-header">
-                <h4><i class="fas fa-trash" style="color:#dc2626; margin-right:8px;"></i>Hapus Supplier</h4>
+                <h4><i class="fas fa-trash" style="color:#dc2626; margin-right:8px;"></i>Hapus Distributor</h4>
                 <button class="modal-close" onclick="closeModal('modalDelete')"><i class="fas fa-times"></i></button>
             </div>
             <form action="<?= site_url('admin/supplier/hapus') ?>" method="post">

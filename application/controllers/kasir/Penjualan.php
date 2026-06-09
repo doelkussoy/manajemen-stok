@@ -19,7 +19,7 @@ class Penjualan extends CI_Controller {
     public function index() {
         $id_user = $this->session->userdata('id_user');
 
-        $data['title']      = 'Penjualan Offline | PT Pordjo';
+        $data['title']      = 'Penjualan Offline | TOKO SUMBER KERAMIK';
         $data['sales']      = $this->M_sale->get_today_by_kasir($id_user);
         $data['omzet_hari'] = $this->M_sale->omzet_by_kasir_hari_ini($id_user);
         $data['trx_hari']   = $this->M_sale->count_by_kasir_hari_ini($id_user);
@@ -32,7 +32,7 @@ class Penjualan extends CI_Controller {
 
     // ===== FORM INPUT TRANSAKSI BARU =====
     public function create() {
-        $data['title']  = 'Transaksi Baru | PT Pordjo';
+        $data['title']  = 'Transaksi Baru | TOKO SUMBER KERAMIK';
         $data['produk'] = $this->M_produk->get_all();
         $data['kode']   = $this->M_sale->generate_kode();
 
@@ -126,7 +126,7 @@ class Penjualan extends CI_Controller {
         }
 
         if (empty($items)) {
-            $this->session->set_flashdata('error', 'Data produk tidak valid, harap periksa kembali.');
+            $this->session->set_flashdata('error', 'Data keramik tidak valid, harap periksa kembali.');
             redirect('kasir/penjualan/create');
             return;
         }
@@ -184,7 +184,7 @@ class Penjualan extends CI_Controller {
 
     // ===== DETAIL TRANSAKSI =====
     public function detail($id_sale) {
-        $data['title']  = 'Detail Penjualan | PT Pordjo';
+        $data['title']  = 'Detail Penjualan | TOKO SUMBER KERAMIK';
         $data['header'] = $this->M_sale->get_by_id($id_sale);
         $data['detail'] = $this->M_sale->get_detail($id_sale);
 
@@ -202,7 +202,7 @@ class Penjualan extends CI_Controller {
 
     // ===== CETAK NOTA / INVOICE =====
     public function cetak($id_sale) {
-        $data['title']  = 'Cetak Nota | PT Pordjo';
+        $data['title']  = 'Cetak Nota | TOKO SUMBER KERAMIK';
         $data['header'] = $this->M_sale->get_by_id($id_sale);
         $data['detail'] = $this->M_sale->get_detail($id_sale);
 

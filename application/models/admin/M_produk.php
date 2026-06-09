@@ -16,12 +16,12 @@ class M_produk extends CI_Model {
             ->get()->result_array();
     }
 
-    // Semua produk (aktif + nonaktif) untuk halaman admin kelola produk
     public function get_all_including_nonaktif() {
         return $this->db
             ->select('p.*, c.nama_kategori')
             ->from($this->table . ' p')
             ->join('categories c', 'c.id_category = p.id_category', 'left')
+            ->where('p.status !=', 'dihapus')
             ->order_by('p.status', 'ASC')
             ->order_by('p.id_product', 'ASC')
             ->get()->result_array();
@@ -45,6 +45,7 @@ class M_produk extends CI_Model {
             ->from($this->table . ' p')
             ->join('categories c', 'c.id_category = p.id_category', 'left')
             ->where('p.id_category', $id_category)
+            ->where('p.status !=', 'dihapus')
             ->order_by('p.status', 'ASC')
             ->order_by('p.id_product', 'ASC')
             ->get()->result_array();
@@ -85,7 +86,14 @@ class M_produk extends CI_Model {
     }
 
     public function delete($id) {
-        return $this->db->delete($this->table, ['id_product' => $id]);
+        // Cek apakah punya transaksi
+        if ($this->has_transaksi($id)) {
+            // Soft delete agar riwayat transaksi tetap punya nama produk
+            return $this->db->update($this->table, ['status' => 'dihapus'], ['id_product' => $id]);
+        } else {
+            // Hard delete jika belum pernah ada transaksi sama sekali
+            return $this->db->delete($this->table, ['id_product' => $id]);
+        }
     }
 
     // ===== CEK RELASI TRANSAKSI =====
@@ -122,7 +130,7 @@ class M_produk extends CI_Model {
     }
 
     public function count_all() {
-        return $this->db->count_all($this->table);
+        return $this->db->where('status !=', 'dihapus')->count_all_results($this->table);
     }
 
     // Produk yang harga jualnya di bawah/sama dengan harga beli (potensi rugi)
@@ -133,6 +141,7 @@ class M_produk extends CI_Model {
             ->join('categories c', 'c.id_category = p.id_category', 'left')
             ->where('p.harga_jual <=', 'p.harga_beli', FALSE)
             ->where('p.harga_beli >', 0)
+            ->where('p.status !=', 'dihapus')
             ->order_by('p.nama_produk', 'ASC')
             ->get()->result_array();
     }

@@ -1,6 +1,6 @@
 # Analisis Pembagian Hak Akses: Admin vs Kasir
 
-Sistem **PT Pordjo** menggunakan **Role-Based Access Control (RBAC)** dengan dua peran: `admin` dan `kasir`.  
+Sistem **TOKO SUMBER KERAMIK** menggunakan **Role-Based Access Control (RBAC)** dengan dua peran: `admin` dan `kasir`.  
 Dokumen ini merupakan analisis menyeluruh berdasarkan seluruh source code terkini.
 
 ---

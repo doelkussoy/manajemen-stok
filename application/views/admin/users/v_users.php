@@ -567,6 +567,7 @@
 
     .form-control-custom {
         width: 100%;
+        box-sizing: border-box;
         padding: 10px 12px 10px 36px;
         border: 1.5px solid #e5e7eb;
         border-radius: 9px;
@@ -682,7 +683,7 @@
     <div class="page-title-row">
         <div>
             <h1>Kelola Akun</h1>
-            <p>Manajemen akun Admin dan Kasir PT Pordjo Steelindo Perkasa</p>
+            <p>Manajemen akun Admin dan Kasir TOKO SUMBER KERAMIK BALARAJA</p>
         </div>
         <button class="btn-primary-custom" onclick="openModalTambah()">
             <i class="fas fa-plus"></i> Tambah User

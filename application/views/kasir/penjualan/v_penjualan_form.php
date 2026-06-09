@@ -149,7 +149,7 @@
     <div class="page-title-row">
         <div>
             <h1><i class="fas fa-cash-register" style="color:#1a56db; margin-right:6px;"></i>Transaksi Baru</h1>
-            <p>Input penjualan offline — Gudang PT Pordjo Kaliabang</p>
+            <p>Input penjualan offline — Gudang TOKO SUMBER KERAMIK Kaliabang</p>
         </div>
         <a href="<?= site_url('kasir/penjualan') ?>" class="btn-back">
             <i class="fas fa-arrow-left"></i> Kembali
@@ -226,7 +226,7 @@
                         <table class="items-table">
                             <thead>
                                 <tr>
-                                    <th style="width:35%;">Produk</th>
+                                    <th style="width:35%;">Keramik</th>
                                     <th style="width:12%;">Stok</th>
                                     <th style="width:12%;">Qty</th>
                                     <th style="width:18%;">Harga Jual</th>
@@ -300,7 +300,7 @@
                         <div style="font-size:12px; color:#1e3a8a; font-weight:600; margin-bottom:8px;"><i class="fas fa-university"></i> Rekening Tujuan:</div>
                         <div style="background:#fff; border-radius:6px; padding:8px 10px; border:1px solid #bfdbfe; font-size:13px; font-weight:700; color:#1e40af; margin-bottom:10px; font-family:'Courier New', monospace;">
                             BCA - 1234 567 890<br>
-                            <span style="font-size:11px; color:#6b7280; font-family:'DM Sans', sans-serif;">a/n PT Pordjo Steelindo</span>
+                            <span style="font-size:11px; color:#6b7280; font-family:'DM Sans', sans-serif;">a/n TOKO SUMBER KERAMIK BALARAJA</span>
                         </div>
                         
                         <div class="form-group" style="margin-bottom:10px;">
@@ -383,7 +383,7 @@
         row.innerHTML = `
             <td>
                 <select name="id_product[]" class="item-select" onchange="onSelectProduk(${idx})" required>
-                    <option value="" disabled selected>-- Pilih Produk --</option>
+                    <option value="" disabled selected>-- Pilih Keramik --</option>
                     ${options}
                 </select>
             </td>
@@ -577,7 +577,7 @@
                 if (parseInt(qty.value) > stok) stokOk = false;
             }
         });
-        if (!valid) { alert('Lengkapi semua data produk (pilih produk, qty, dan harga jual)!'); return; }
+        if (!valid) { alert('Lengkapi semua data keramik (pilih produk, qty, dan harga jual)!'); return; }
         if (!stokOk) { alert('Ada produk yang qty-nya melebihi stok! Periksa kembali.'); return; }
 
         var metode = document.getElementById('inputMetode').value;

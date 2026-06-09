@@ -18,7 +18,7 @@ class Admin extends CI_Controller {
     }
 
     public function index() {
-        $data['title'] = 'Dashboard Admin | PT Pordjo';
+        $data['title'] = 'Dashboard Admin | TOKO SUMBER KERAMIK';
 
         // ===== PRODUK =====
         $data['total_produk']   = $this->M_produk->count_all();

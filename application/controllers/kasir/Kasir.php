@@ -15,7 +15,7 @@ class Kasir extends CI_Controller {
     }
 
     public function index() {
-        $data['title'] = 'Dashboard Kasir | PT Pordjo';
+        $data['title'] = 'Dashboard Kasir | TOKO SUMBER KERAMIK';
         $id_user = $this->session->userdata('id_user');
 
         // Stat cards — real data

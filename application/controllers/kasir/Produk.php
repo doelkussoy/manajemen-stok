@@ -19,7 +19,7 @@ class Produk extends CI_Controller {
     public function index() {
         $id_category = $this->input->get('id_category', TRUE);
 
-        $data['title']   = 'Stok Produk | PT Pordjo';
+        $data['title']   = 'Stok Produk | TOKO SUMBER KERAMIK';
         $data['kategori'] = $this->M_kategori->get_all();
         $data['filter_kategori'] = '';
 

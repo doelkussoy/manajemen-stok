@@ -1159,7 +1159,7 @@
     <div class="dash-page-title">
         <div>
             <h1>Dashboard Admin</h1>
-            <p>PT Pordjo Steelindo Perkasa — Pusat kendali stok, transaksi, dan laporan</p>
+            <p>TOKO SUMBER KERAMIK BALARAJA — Pusat kendali stok, transaksi, dan laporan</p>
         </div>
         <div class="dash-date-pill">
             <i class="far fa-calendar-alt"></i>
@@ -1250,7 +1250,7 @@
             <div class="stat-card">
                 <div class="stat-card-top">
                     <div class="stat-icon blue"><i class="fas fa-boxes"></i></div>
-                    <span class="stat-badge neutral">Produk</span>
+                    <span class="stat-badge neutral">Keramik</span>
                 </div>
                 <div>
                     <div class="stat-value"><?= $total_produk ?? '0' ?></div>
@@ -1272,7 +1272,7 @@
             <div class="stat-card">
                 <div class="stat-card-top">
                     <div class="stat-icon amber"><i class="fas fa-truck"></i></div>
-                    <span class="stat-badge neutral">Supplier</span>
+                    <span class="stat-badge neutral">Distributor</span>
                 </div>
                 <div>
                     <div class="stat-value"><?= $total_supplier ?? '0' ?></div>
@@ -1287,7 +1287,7 @@
                 </div>
                 <div>
                     <div class="stat-value"><?= $stok_menipis ?? '0' ?></div>
-                    <div class="stat-label">Produk Stok Menipis</div>
+                    <div class="stat-label">Produk Stok Keramik Menipis</div>
                 </div>
             </div>
 
@@ -1423,8 +1423,7 @@
                             <span style="font-size:12px;color:#16a34a;font-weight:600;">
                                 <i class="fas fa-check-circle" style="margin-right:5px;"></i>
                                 <?= $bm_count ?> faktur · <?= $bm_qty_total ?> unit ·
-                                <?= count(array_unique(array_column($bm_hari_ini, 'nama_supplier'))) ?> supplier
-                            </span>
+                                <?= count(array_unique(array_column($bm_hari_ini, 'nama_supplier'))) ?>Distributor</span>
                             <a href="<?= site_url('admin/barang_masuk') ?>"
                                 style="font-size:12px;color:#16a34a;font-weight:600;text-decoration:none;">
                                 Lihat Semua <i class="fas fa-chevron-right" style="font-size:10px;"></i>

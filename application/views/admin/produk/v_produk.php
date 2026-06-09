@@ -103,6 +103,8 @@
     .btn-cetak-lap:hover { background: #d1fae5; color: #059669; }
     .ap-btn-edit { background: #eff6ff; color: #1a56db; }
     .ap-btn-edit:hover { background: #dbeafe; transform: translateY(-1px); box-shadow: 0 3px 10px rgba(26,86,219,0.12); }
+    .ap-btn-nonaktif { background: #fff7ed; color: #c2410c; }
+    .ap-btn-nonaktif:hover { background: #ffedd5; transform: translateY(-1px); box-shadow: 0 3px 10px rgba(234,88,12,0.12); }
     .ap-btn-delete { background: #fef2f2; color: #dc2626; }
     .ap-btn-delete:hover { background: #fee2e2; transform: translateY(-1px); box-shadow: 0 3px 10px rgba(220,38,38,0.12); }
 
@@ -140,7 +142,7 @@
     .form-label-custom span { color: #dc2626; }
     .input-wrap { position: relative; }
     .input-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 13px; color: #9ca3af; pointer-events: none; }
-    .form-control-custom { width: 100%; padding: 11px 14px 11px 38px; border: 1.5px solid #e5e7eb; border-radius: 10px; font-size: 14px; font-family: 'DM Sans', sans-serif; color: #111827; background: #fafafa; outline: none; transition: all 0.15s; }
+    .form-control-custom { width: 100%; box-sizing: border-box; padding: 11px 14px 11px 38px; border: 1.5px solid #e5e7eb; border-radius: 10px; font-size: 14px; font-family: 'DM Sans', sans-serif; color: #111827; background: #fafafa; outline: none; transition: all 0.15s; }
     .form-control-custom:focus { border-color: #1a56db; background: #fff; box-shadow: 0 0 0 3px rgba(26,86,219,0.08); }
     .form-control-custom::placeholder { color: #d1d5db; }
     select.form-control-custom { cursor: pointer; }
@@ -208,13 +210,12 @@
     <!-- PAGE HEADER -->
     <div class="ap-header">
         <div>
-            <h1><i class="fas fa-boxes" style="color:#1a56db; margin-right:6px; font-size:20px;"></i>Data Produk</h1>
-            <p>Kelola seluruh produk baja dan besi — Gudang PT Pordjo</p>
+            <h1><i class="fas fa-boxes" style="color:#1a56db; margin-right:6px; font-size:20px;"></i>Data Keramik</h1>
+            <p>Kelola seluruh produk keramik — Gudang TOKO SUMBER KERAMIK</p>
         </div>
         <div class="ap-header-actions">
             <a href="<?= site_url('admin/kategori') ?>" class="btn-back">
-                <i class="fas fa-tag"></i> Kategori
-            </a>
+                <i class="fas fa-tag"></i>Jenis Keramik</a>
             <a href="<?= site_url('admin/produk/cetak' . (!empty($this->input->get('id_category')) ? '?id_category=' . $this->input->get('id_category') : '')) ?>" class="btn-cetak-lap" target="_blank">
                 <i class="fas fa-print"></i> Cetak Laporan
             </a>
@@ -244,7 +245,7 @@
             <div class="ap-stat-icon" style="background:#fffbeb; color:#d97706;"><i class="fas fa-exclamation-triangle"></i></div>
             <div>
                 <div class="ap-stat-value" style="color:#d97706;"><?= $stok_menipis_c ?></div>
-                <div class="ap-stat-label">Stok Menipis</div>
+                <div class="ap-stat-label">Stok Keramik Menipis</div>
             </div>
         </div>
         <div class="ap-stat-card">
@@ -300,12 +301,12 @@
     <div class="ap-card">
         <div class="ap-toolbar">
             <div style="display:flex; align-items:center;">
-                <span class="ap-toolbar-title">Daftar Produk</span>
-                <span class="ap-count-badge"><i class="fas fa-box" style="font-size:10px;"></i><?= $total_produk ?> produk</span>
+                <span class="ap-toolbar-title">Katalog Keramik</span>
+                <span class="ap-count-badge"><i class="fas fa-box" style="font-size:10px;"></i><?= $total_produk ?>Keramik</span>
             </div>
             <div class="ap-search">
                 <i class="fas fa-search"></i>
-                <input type="text" id="searchProduk" placeholder="Cari nama produk..." onkeyup="filterTable()">
+                <input type="text" id="searchProduk" placeholder="Cari nama Keramik..." onkeyup="filterTable()">
             </div>
         </div>
 
@@ -314,8 +315,8 @@
                 <tr>
                     <th>#</th>
                     <th>Kode</th>
-                    <th>Produk</th>
-                    <th>Kategori</th>
+                    <th>Keramik</th>
+                    <th>Jenis Keramik</th>
                     <th>Harga Beli</th>
                     <th>Harga Jual</th>
                     <th>Stok</th>
@@ -383,9 +384,13 @@
                                     )">
                                     <i class="fas fa-pen"></i> Edit
                                 </button>
-                                <button class="ap-btn ap-btn-delete"
+                                <button class="ap-btn ap-btn-nonaktif" title="Nonaktifkan Sementara"
+                                    onclick="openModalNonaktif('<?= $p['id_product'] ?>', '<?= htmlspecialchars($p['nama_produk'], ENT_QUOTES) ?>')">
+                                    <i class="fas fa-ban"></i> Nonaktif
+                                </button>
+                                <button class="ap-btn ap-btn-delete" title="Hapus Permanen"
                                     onclick="openModalDelete('<?= $p['id_product'] ?>', '<?= htmlspecialchars($p['nama_produk'], ENT_QUOTES) ?>')">
-                                    <i class="fas fa-trash"></i>
+                                    <i class="fas fa-trash"></i> Hapus
                                 </button>
                             </div>
                         </td>
@@ -418,8 +423,7 @@
             <div style="display:flex; align-items:center; gap:10px;">
                 <span class="sn-title"><i class="fas fa-ban"></i>Produk Nonaktif</span>
                 <span class="sn-count">
-                    <i class="fas fa-exclamation-circle"></i><?= count($produk_nonaktif) ?> produk
-                </span>
+                    <i class="fas fa-exclamation-circle"></i><?= count($produk_nonaktif) ?>Keramik</span>
             </div>
             <span style="font-size:11.5px; color:#9ca3af;">Produk ini memiliki riwayat transaksi sehingga tidak dapat dihapus permanen.</span>
         </div>
@@ -428,8 +432,8 @@
                 <tr>
                     <th>#</th>
                     <th>Kode</th>
-                    <th>Produk</th>
-                    <th>Kategori</th>
+                    <th>Keramik</th>
+                    <th>Jenis Keramik</th>
                     <th>Harga Jual</th>
                     <th>Status</th>
                     <th style="text-align:center;">Aksi</th>
@@ -470,24 +474,24 @@
     <div class="modal-overlay" id="modalTambah">
         <div class="modal-box">
             <div class="modal-header">
-                <h4><i class="fas fa-plus-circle" style="color:#1a56db; margin-right:8px;"></i>Tambah Produk</h4>
+                <h4><i class="fas fa-plus-circle" style="color:#1a56db; margin-right:8px;"></i>Tambah Motif Keramik</h4>
                 <button class="modal-close" onclick="closeModal('modalTambah')"><i class="fas fa-times"></i></button>
             </div>
             <form action="<?= site_url('admin/produk/tambah') ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group-custom">
-                        <label class="form-label-custom">Nama Produk <span>*</span></label>
+                        <label class="form-label-custom">Motif/Nama Keramik <span>*</span></label>
                         <div class="input-wrap">
                             <i class="fas fa-box input-icon"></i>
                             <input type="text" name="nama_produk" class="form-control-custom" placeholder="Contoh: Besi Beton 10mm" required>
                         </div>
                     </div>
                     <div class="form-group-custom">
-                        <label class="form-label-custom">Kategori <span>*</span></label>
+                        <label class="form-label-custom">Jenis Keramik<span>*</span></label>
                         <div class="input-wrap">
                             <i class="fas fa-tag input-icon"></i>
                             <select name="id_category" class="form-control-custom" required>
-                                <option value="" disabled selected>-- Pilih Kategori --</option>
+                                <option value="" disabled selected>-- Pilih Jenis Keramik --</option>
                                 <?php foreach ($kategori as $k): ?>
                                 <option value="<?= $k['id_category'] ?>"><?= htmlspecialchars($k['nama_kategori']) ?></option>
                                 <?php endforeach; ?>
@@ -537,28 +541,28 @@
     <div class="modal-overlay" id="modalEdit">
         <div class="modal-box">
             <div class="modal-header">
-                <h4><i class="fas fa-pen" style="color:#1a56db; margin-right:8px;"></i>Edit Produk</h4>
+                <h4><i class="fas fa-pen" style="color:#1a56db; margin-right:8px;"></i>Edit Motif Keramik</h4>
                 <button class="modal-close" onclick="closeModal('modalEdit')"><i class="fas fa-times"></i></button>
             </div>
             <form action="<?= site_url('admin/produk/update') ?>" method="post">
                 <input type="hidden" name="id_product" id="edit_id">
                 <div class="modal-body">
                     <div class="form-group-custom">
-                        <label class="form-label-custom">Kode Produk</label>
+                        <label class="form-label-custom">Kode Keramik</label>
                         <div class="input-wrap">
                             <i class="fas fa-barcode input-icon"></i>
                             <input type="text" id="edit_kode" class="form-control-custom" readonly style="background:#f3f4f6; color:#9ca3af; cursor:not-allowed;">
                         </div>
                     </div>
                     <div class="form-group-custom">
-                        <label class="form-label-custom">Nama Produk <span>*</span></label>
+                        <label class="form-label-custom">Motif/Nama Keramik <span>*</span></label>
                         <div class="input-wrap">
                             <i class="fas fa-box input-icon"></i>
                             <input type="text" name="nama_produk" id="edit_nama" class="form-control-custom" required>
                         </div>
                     </div>
                     <div class="form-group-custom">
-                        <label class="form-label-custom">Kategori <span>*</span></label>
+                        <label class="form-label-custom">Jenis Keramik<span>*</span></label>
                         <div class="input-wrap">
                             <i class="fas fa-tag input-icon"></i>
                             <select name="id_category" id="edit_kat" class="form-control-custom" required>
@@ -611,7 +615,7 @@
     <div class="modal-overlay" id="modalDelete">
         <div class="modal-box modal-sm">
             <div class="modal-header">
-                <h4><i class="fas fa-trash" style="color:#dc2626; margin-right:8px;"></i>Hapus Produk</h4>
+                <h4><i class="fas fa-trash" style="color:#dc2626; margin-right:8px;"></i>Hapus Keramik</h4>
                 <button class="modal-close" onclick="closeModal('modalDelete')"><i class="fas fa-times"></i></button>
             </div>
             <form action="<?= site_url('admin/produk/hapus') ?>" method="post">
@@ -619,7 +623,7 @@
                 <div class="delete-modal-body">
                     <div class="delete-icon"><i class="fas fa-exclamation-triangle"></i></div>
                     <h5>Apakah Anda yakin ingin menghapus produk ini?</h5>
-                    <p>Data produk <strong id="del_nama"></strong> akan dihapus secara permanen.</p>
+                    <p>Data keramik <strong id="del_nama"></strong> akan dihapus secara permanen.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn-cancel" onclick="closeModal('modalDelete')">Batal</button>
@@ -629,11 +633,33 @@
         </div>
     </div>
 
+    <!-- MODAL NONAKTIF -->
+    <div class="modal-overlay" id="modalNonaktif">
+        <div class="modal-box modal-sm">
+            <div class="modal-header">
+                <h4><i class="fas fa-ban" style="color:#c2410c; margin-right:8px;"></i>Nonaktifkan Keramik</h4>
+                <button class="modal-close" onclick="closeModal('modalNonaktif')"><i class="fas fa-times"></i></button>
+            </div>
+            <form action="<?= site_url('admin/produk/nonaktifkan') ?>" method="post">
+                <input type="hidden" name="id_product" id="nonaktif_id">
+                <div class="delete-modal-body">
+                    <div class="delete-icon" style="background:#fff7ed; color:#c2410c;"><i class="fas fa-ban"></i></div>
+                    <h5>Nonaktifkan produk ini?</h5>
+                    <p>Keramik<strong id="nonaktif_nama"></strong> tidak dihapus permanen, tetapi tidak dapat dipilih pada transaksi baru.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" onclick="closeModal('modalNonaktif')">Batal</button>
+                    <button type="submit" class="btn-delete-confirm" style="background:linear-gradient(135deg, #ea580c, #c2410c); box-shadow:0 4px 14px rgba(234,88,12,0.3);"><i class="fas fa-ban"></i> Ya, Nonaktifkan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- MODAL AKTIFKAN -->
     <div class="modal-overlay" id="modalAktifkan">
         <div class="modal-box modal-sm">
             <div class="modal-header">
-                <h4><i class="fas fa-redo" style="color:#059669; margin-right:8px;"></i>Aktifkan Produk</h4>
+                <h4><i class="fas fa-redo" style="color:#059669; margin-right:8px;"></i>Aktifkan Keramik</h4>
                 <button class="modal-close" onclick="closeModal('modalAktifkan')"><i class="fas fa-times"></i></button>
             </div>
             <form action="<?= site_url('admin/produk/aktifkan') ?>" method="post">
@@ -641,7 +667,7 @@
                 <div class="delete-modal-body">
                     <div class="delete-icon" style="background:#f0fdf4; color:#059669;"><i class="fas fa-redo"></i></div>
                     <h5>Aktifkan Kembali Produk?</h5>
-                    <p>Produk <strong id="aktif_nama"></strong> akan diaktifkan dan dapat dipilih kembali di form transaksi baru.</p>
+                    <p>Keramik<strong id="aktif_nama"></strong> akan diaktifkan dan dapat dipilih kembali di form transaksi baru.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn-cancel" onclick="closeModal('modalAktifkan')">Batal</button>
@@ -774,6 +800,12 @@
         document.getElementById('del_id').value          = id;
         document.getElementById('del_nama').textContent  = nama;
         openModal('modalDelete');
+    }
+
+    function openModalNonaktif(id, nama) {
+        document.getElementById('nonaktif_id').value         = id;
+        document.getElementById('nonaktif_nama').textContent = nama;
+        openModal('modalNonaktif');
     }
 
     function openModalEditStok(id, nama, stok, satuan) {

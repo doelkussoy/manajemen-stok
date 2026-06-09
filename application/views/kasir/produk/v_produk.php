@@ -777,8 +777,8 @@
     <!-- PAGE HEADER -->
     <div class="kp-header">
         <div>
-            <h1><i class="fas fa-boxes" style="color:#1a56db; margin-right:6px; font-size:20px;"></i>Data Produk</h1>
-            <p>Pantau dan perbarui stok produk — Gudang PT Pordjo</p>
+            <h1><i class="fas fa-boxes" style="color:#1a56db; margin-right:6px; font-size:20px;"></i>Data Keramik</h1>
+            <p>Pantau dan perbarui stok produk — Gudang TOKO SUMBER KERAMIK</p>
         </div>
     </div>
 
@@ -802,7 +802,7 @@
             <div class="kp-stat-icon" style="background:#fffbeb; color:#d97706;"><i class="fas fa-exclamation-triangle"></i></div>
             <div>
                 <div class="kp-stat-value" style="color:#d97706;"><?= $stok_menipis ?></div>
-                <div class="kp-stat-label">Stok Menipis</div>
+                <div class="kp-stat-label">Stok Keramik Menipis</div>
             </div>
         </div>
         <div class="kp-stat-card">
@@ -855,12 +855,12 @@
     <div class="kp-card">
         <div class="kp-toolbar">
             <div style="display:flex; align-items:center;">
-                <span class="kp-toolbar-title">Daftar Produk</span>
-                <span class="kp-count-badge"><i class="fas fa-box" style="font-size:10px;"></i><?= $total_produk ?> produk</span>
+                <span class="kp-toolbar-title">Katalog Keramik</span>
+                <span class="kp-count-badge"><i class="fas fa-box" style="font-size:10px;"></i><?= $total_produk ?>Keramik</span>
             </div>
             <div class="kp-search">
                 <i class="fas fa-search"></i>
-                <input type="text" id="searchProduk" placeholder="Cari nama produk..." onkeyup="filterTable()">
+                <input type="text" id="searchProduk" placeholder="Cari nama Keramik..." onkeyup="filterTable()">
             </div>
         </div>
 
@@ -868,8 +868,8 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Produk</th>
-                    <th>Kategori</th>
+                    <th>Keramik</th>
+                    <th>Jenis Keramik</th>
                     <th>Harga Jual</th>
                     <th>Stok</th>
                     <th style="text-align:center;">Aksi</th>
@@ -989,7 +989,7 @@
                 <p style="font-size:12.5px; color:#6b7280; margin:0 0 16px; line-height:1.6;">Stok produk akan diperbarui dengan nilai baru.</p>
                 <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; text-align:left;">
                     <div style="background:#f8fafc; border-radius:9px; padding:10px 14px;">
-                        <span style="font-size:10.5px; color:#9ca3af; font-weight:600; text-transform:uppercase; letter-spacing:0.3px; display:block; margin-bottom:3px;">Produk</span>
+                        <span style="font-size:10.5px; color:#9ca3af; font-weight:600; text-transform:uppercase; letter-spacing:0.3px; display:block; margin-bottom:3px;">Keramik</span>
                         <span style="font-size:13px; font-weight:700; color:#111827;" id="confirmStokProduk">—</span>
                     </div>
                     <div style="background:#f8fafc; border-radius:9px; padding:10px 14px;">

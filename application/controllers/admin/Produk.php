@@ -18,7 +18,7 @@ class Produk extends CI_Controller {
     public function index() {
         $id_category = $this->input->get('id_category', TRUE);
 
-        $data['title']   = 'Stok Produk | PT Pordjo';
+        $data['title']   = 'Stok Produk | TOKO SUMBER KERAMIK';
         $data['kategori'] = $this->M_kategori->get_all();
         $data['filter_kategori'] = '';
 
@@ -100,7 +100,7 @@ class Produk extends CI_Controller {
         }
 
         if ($this->M_produk->update($id, $data)) {
-            $this->session->set_flashdata('success', 'Produk berhasil diperbarui!');
+            $this->session->set_flashdata('success', 'Keramik berhasil diperbarui!');
         } else {
             $this->session->set_flashdata('error', 'Gagal memperbarui produk.');
         }
@@ -141,8 +141,7 @@ class Produk extends CI_Controller {
     }
 
     // ===== HAPUS PRODUK =====
-    // Jika produk punya riwayat transaksi, nonaktifkan saja (soft delete)
-    // Jika tidak, hapus permanen
+    // Menghapus produk (hard delete jika tanpa transaksi, soft delete jika ada transaksi agar riwayat aman)
     public function hapus() {
         $id = $this->input->post('id_product', TRUE);
 
@@ -152,21 +151,28 @@ class Produk extends CI_Controller {
             return;
         }
 
-        // Cek apakah produk ini pernah ada di transaksi penjualan/barang masuk
-        if ($this->M_produk->has_transaksi($id)) {
-            // Tidak bisa dihapus permanen, nonaktifkan saja (soft delete)
-            if ($this->M_produk->nonaktifkan($id)) {
-                $this->session->set_flashdata('warning', 'Produk tidak dapat dihapus permanen karena memiliki riwayat transaksi. Produk telah <strong>dinonaktifkan</strong> dan tidak akan muncul di form transaksi baru.');
-            } else {
-                $this->session->set_flashdata('error', 'Gagal menonaktifkan produk.');
-            }
+        if ($this->M_produk->delete($id)) {
+            $this->session->set_flashdata('success', 'Keramik berhasil dihapus dari katalog.');
         } else {
-            // Tidak punya transaksi, aman untuk dihapus permanen
-            if ($this->M_produk->delete($id)) {
-                $this->session->set_flashdata('success', 'Produk berhasil dihapus secara permanen dari katalog.');
-            } else {
-                $this->session->set_flashdata('error', 'Gagal menghapus produk.');
-            }
+            $this->session->set_flashdata('error', 'Gagal menghapus produk.');
+        }
+        redirect('admin/produk');
+    }
+
+    // ===== NONAKTIFKAN PRODUK =====
+    public function nonaktifkan() {
+        $id = $this->input->post('id_product', TRUE);
+
+        if (empty($id)) {
+            $this->session->set_flashdata('error', 'ID produk tidak valid.');
+            redirect('admin/produk');
+            return;
+        }
+
+        if ($this->M_produk->nonaktifkan($id)) {
+            $this->session->set_flashdata('success', 'Keramik berhasil dinonaktifkan dan tidak akan muncul di form transaksi baru.');
+        } else {
+            $this->session->set_flashdata('error', 'Gagal menonaktifkan produk.');
         }
         redirect('admin/produk');
     }
@@ -182,7 +188,7 @@ class Produk extends CI_Controller {
         }
 
         if ($this->M_produk->aktifkan($id)) {
-            $this->session->set_flashdata('success', 'Produk berhasil diaktifkan kembali.');
+            $this->session->set_flashdata('success', 'Keramik berhasil diaktifkan kembali.');
         } else {
             $this->session->set_flashdata('error', 'Gagal mengaktifkan produk.');
         }

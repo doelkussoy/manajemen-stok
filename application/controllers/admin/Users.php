@@ -21,7 +21,7 @@ class Users extends CI_Controller {
 
     // ===== INDEX — tampilkan semua user =====
     public function index() {
-        $data['title'] = 'Kelola Akun | PT Pordjo';
+        $data['title'] = 'Kelola Akun | TOKO SUMBER KERAMIK';
         $data['users'] = $this->M_users->get_all_users();
         $this->load->view('layout/header', $data);
         $this->load->view('layout/sidebar', $data);
