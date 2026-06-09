@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/images/logo.png" alt="Logo TOKO SUMBER KERAMIK" width="160">
+  <img src="assets/images/logoo.png" alt="Logo TOKO SUMBER KERAMIK" width="160">
 </p>
 
 <h1 align="center">Sistem Manajemen Barang</h1>

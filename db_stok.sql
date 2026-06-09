@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2026 at 09:10 AM
+-- Generation Time: Jun 09, 2026 at 11:58 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_ta`
+-- Database: `db_stok`
 --
 
 -- --------------------------------------------------------
@@ -39,8 +39,12 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id_category`, `nama_kategori`, `created_at`, `updated_at`) VALUES
-(1, 'Makanan', '2026-06-04 10:05:55', NULL),
-(2, 'Minuman', '2026-06-04 10:05:55', NULL);
+(3, 'Keramik Lantai 40x40', '2026-06-09 15:20:53', NULL),
+(4, 'Keramik Lantai 50x50', '2026-06-09 15:20:53', NULL),
+(5, 'Keramik Dinding 25x40', '2026-06-09 15:20:53', NULL),
+(6, 'Granit 60x60', '2026-06-09 15:20:53', NULL),
+(7, 'Keramik Kasar (Rustic)', '2026-06-09 15:20:53', NULL),
+(8, 'Keramik Motif Kayu', '2026-06-09 15:20:53', NULL);
 
 -- --------------------------------------------------------
 
@@ -94,8 +98,15 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id_product`, `id_category`, `kode_produk`, `nama_produk`, `satuan`, `stok`, `harga_beli`, `harga_jual`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'MKN-0001', 'Nasi Goreng', 'porsi', 68, 8000.00, 15000.00, 'aktif', '2026-06-04 10:05:55', NULL),
-(2, 2, 'MNM-0001', 'Teh Manis', 'gelas', 99, 2000.00, 5000.00, 'aktif', '2026-06-04 10:05:55', NULL);
+(3, 3, 'ROM-001', 'Roman dMilan White 40x40', 'Dus', 150, 45000.00, 52000.00, 'aktif', '2026-06-09 15:21:50', NULL),
+(4, 3, 'MUL-001', 'Mulia Accura Beige 40x40', 'Dus', 200, 42000.00, 48500.00, 'aktif', '2026-06-09 15:21:50', NULL),
+(5, 4, 'PLA-001', 'Platinum Amazon Brown 50x50', 'Dus', 120, 55000.00, 65000.00, 'aktif', '2026-06-09 15:21:50', NULL),
+(6, 5, 'ROM-002', 'Roman dTuscany 25x40', 'Dus', 80, 58000.00, 68000.00, 'aktif', '2026-06-09 15:21:50', NULL),
+(7, 5, 'MUL-002', 'Mulia Neo Wall Tile 25x40', 'Dus', 300, 40000.00, 47000.00, 'aktif', '2026-06-09 15:21:50', NULL),
+(8, 6, 'GRA-001', 'Granito Salsa Crystal White 60x60', 'Dus', 50, 120000.00, 145000.00, 'aktif', '2026-06-09 15:21:50', NULL),
+(9, 6, 'GRA-002', 'Granito Black Galaxy 60x60', 'Dus', 40, 135000.00, 160000.00, 'aktif', '2026-06-09 15:21:50', NULL),
+(10, 7, 'PLA-002', 'Asia Tile Alpha Grey (Kasar)', 'Dus', 180, 43000.00, 50000.00, 'aktif', '2026-06-09 15:21:50', NULL),
+(11, 8, 'ROM-003', 'Roman dTimber Oak 15x60', 'Dus', 60, 75000.00, 88000.00, 'aktif', '2026-06-09 15:21:50', NULL);
 
 -- --------------------------------------------------------
 
@@ -114,13 +125,6 @@ CREATE TABLE `purchases` (
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `purchases`
---
-
-INSERT INTO `purchases` (`id_purchase`, `no_faktur`, `id_supplier`, `id_user`, `nama_supplier_snapshot`, `total_bayar`, `created_at`, `updated_at`) VALUES
-(1, 'BMK-20260101-001', 1, 1, 'PT. Contoh Supplier', 100000.00, '2026-06-04 10:05:55', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -135,13 +139,6 @@ CREATE TABLE `purchase_details` (
   `purchase_price` decimal(12,2) NOT NULL DEFAULT 0.00,
   `subtotal` decimal(12,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `purchase_details`
---
-
-INSERT INTO `purchase_details` (`id_detail`, `id_purchase`, `id_product`, `qty`, `purchase_price`, `subtotal`) VALUES
-(1, 1, 1, 20, 8000.00, 160000.00);
 
 -- --------------------------------------------------------
 
@@ -171,8 +168,21 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`id_sale`, `kode_transaksi`, `id_user`, `nama_pelanggan`, `alamat_pelanggan`, `tgl_jual`, `total_harga`, `bayar`, `kembalian`, `metode_pembayaran`, `nomor_referensi`, `bukti_transfer`, `status`, `created_at`) VALUES
-(1, 'TRX-20260101-001', 2, NULL, NULL, '2026-06-04 10:05:55', 20000.00, 20000.00, 0.00, NULL, NULL, NULL, 'Lunas', '2026-06-04 10:05:55'),
-(2, 'TRX-20260604-001', 2, 'dsad', 'sdasd', '2026-06-04 11:07:32', 16650.00, 90000.00, 73350.00, 'Cash', NULL, NULL, 'Lunas', '2026-06-04 11:07:32');
+(3, 'TRX-DUMMY-2829', 1, 'Pelanggan Demo', NULL, '2026-06-05 04:21:50', 480000.00, 500000.00, 20000.00, NULL, NULL, NULL, 'Lunas', '2026-06-05 04:21:50'),
+(4, 'TRX-DUMMY-1531', 1, 'Pelanggan Demo', NULL, '2026-06-04 00:21:50', 515000.00, 550000.00, 35000.00, NULL, NULL, NULL, 'Lunas', '2026-06-04 00:21:50'),
+(5, 'TRX-DUMMY-8290', 1, 'Pelanggan Demo', NULL, '2026-06-09 04:21:50', 1430000.00, 1450000.00, 20000.00, NULL, NULL, NULL, 'Lunas', '2026-06-09 04:21:50'),
+(6, 'TRX-DUMMY-2318', 1, 'Pelanggan Demo', NULL, '2026-06-04 06:21:50', 1819000.00, 1850000.00, 31000.00, NULL, NULL, NULL, 'Lunas', '2026-06-04 06:21:50'),
+(7, 'TRX-DUMMY-2640', 1, 'Pelanggan Demo', NULL, '2026-06-05 02:21:51', 616000.00, 650000.00, 34000.00, NULL, NULL, NULL, 'Lunas', '2026-06-05 02:21:51'),
+(8, 'TRX-DUMMY-8648', 1, 'Pelanggan Demo', NULL, '2026-06-07 06:21:51', 1385000.00, 1400000.00, 15000.00, NULL, NULL, NULL, 'Lunas', '2026-06-07 06:21:51'),
+(9, 'TRX-DUMMY-5579', 1, 'Pelanggan Demo', NULL, '2026-06-08 02:21:51', 990000.00, 1000000.00, 10000.00, NULL, NULL, NULL, 'Lunas', '2026-06-08 02:21:51'),
+(10, 'TRX-DUMMY-5966', 1, 'Pelanggan Demo', NULL, '2026-06-05 04:21:51', 339500.00, 350000.00, 10500.00, NULL, NULL, NULL, 'Lunas', '2026-06-05 04:21:51'),
+(11, 'TRX-DUMMY-1108', 1, 'Pelanggan Demo', NULL, '2026-06-10 01:21:51', 339500.00, 350000.00, 10500.00, NULL, NULL, NULL, 'Lunas', '2026-06-10 01:21:51'),
+(12, 'TRX-DUMMY-9629', 1, 'Pelanggan Demo', NULL, '2026-06-08 06:21:51', 1601000.00, 1650000.00, 49000.00, NULL, NULL, NULL, 'Lunas', '2026-06-08 06:21:51'),
+(13, 'TRX-DUMMY-1817', 1, 'Pelanggan Demo', NULL, '2026-06-10 05:21:51', 816000.00, 850000.00, 34000.00, NULL, NULL, NULL, 'Lunas', '2026-06-10 05:21:51'),
+(14, 'TRX-DUMMY-7811', 1, 'Pelanggan Demo', NULL, '2026-06-04 23:21:51', 136000.00, 150000.00, 14000.00, NULL, NULL, NULL, 'Lunas', '2026-06-04 23:21:51'),
+(15, 'TRX-DUMMY-3497', 1, 'Pelanggan Demo', NULL, '2026-06-04 06:21:51', 1242000.00, 1250000.00, 8000.00, NULL, NULL, NULL, 'Lunas', '2026-06-04 06:21:51'),
+(16, 'TRX-DUMMY-1814', 1, 'Pelanggan Demo', NULL, '2026-06-07 23:21:51', 264000.00, 300000.00, 36000.00, NULL, NULL, NULL, 'Lunas', '2026-06-07 23:21:51'),
+(17, 'TRX-DUMMY-8130', 1, 'Pelanggan Demo', NULL, '2026-06-06 04:21:51', 94000.00, 100000.00, 6000.00, NULL, NULL, NULL, 'Lunas', '2026-06-06 04:21:51');
 
 -- --------------------------------------------------------
 
@@ -194,9 +204,33 @@ CREATE TABLE `sale_details` (
 --
 
 INSERT INTO `sale_details` (`id_detail`, `id_sale`, `id_product`, `qty`, `harga_jual`, `subtotal`) VALUES
-(1, 1, 1, 1, 15000.00, 15000.00),
-(2, 1, 2, 1, 5000.00, 5000.00),
-(3, 2, 1, 1, 15000.00, 15000.00);
+(4, 3, 9, 3, 160000.00, 480000.00),
+(5, 4, 9, 2, 160000.00, 320000.00),
+(6, 4, 5, 3, 65000.00, 195000.00),
+(7, 5, 10, 3, 50000.00, 150000.00),
+(8, 5, 9, 8, 160000.00, 1280000.00),
+(9, 6, 11, 5, 88000.00, 440000.00),
+(10, 6, 3, 7, 52000.00, 364000.00),
+(11, 6, 8, 7, 145000.00, 1015000.00),
+(12, 7, 11, 7, 88000.00, 616000.00),
+(13, 8, 9, 6, 160000.00, 960000.00),
+(14, 8, 5, 5, 65000.00, 325000.00),
+(15, 8, 10, 2, 50000.00, 100000.00),
+(16, 9, 6, 5, 68000.00, 340000.00),
+(17, 9, 5, 10, 65000.00, 650000.00),
+(18, 10, 4, 7, 48500.00, 339500.00),
+(19, 11, 4, 7, 48500.00, 339500.00),
+(20, 12, 7, 7, 47000.00, 329000.00),
+(21, 12, 11, 9, 88000.00, 792000.00),
+(22, 12, 9, 3, 160000.00, 480000.00),
+(23, 13, 8, 2, 145000.00, 290000.00),
+(24, 13, 6, 2, 68000.00, 136000.00),
+(25, 13, 5, 6, 65000.00, 390000.00),
+(26, 14, 6, 2, 68000.00, 136000.00),
+(27, 15, 11, 9, 88000.00, 792000.00),
+(28, 15, 10, 9, 50000.00, 450000.00),
+(29, 16, 11, 3, 88000.00, 264000.00),
+(30, 17, 7, 2, 47000.00, 94000.00);
 
 -- --------------------------------------------------------
 
@@ -237,7 +271,10 @@ CREATE TABLE `suppliers` (
 --
 
 INSERT INTO `suppliers` (`id_supplier`, `kode_supplier`, `nama_supplier`, `alamat`, `telp`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'SUP-001', 'PT. Contoh Supplier', 'Jalan Contoh No.1', '081234567890', 'aktif', '2026-06-04 10:05:55', NULL);
+(2, 'SUP-2402', 'PT Roman Ceramics', 'Jl. Industri Keramik Raya No. 1, Jakarta', '021-1234567', 'aktif', '2026-06-09 15:21:50', NULL),
+(3, 'SUP-8287', 'Mulia Ceramics', 'Kawasan Industri Cikarang Blok B', '021-9876543', 'aktif', '2026-06-09 15:21:50', NULL),
+(4, 'SUP-2920', 'Platinum Ceramics', 'Jl. Raya Rungkut, Surabaya', '031-5556667', 'aktif', '2026-06-09 15:21:50', NULL),
+(5, 'SUP-9109', 'Granito Tile', 'Jl. Jendral Sudirman Kav 21', '021-4443332', 'aktif', '2026-06-09 15:21:50', NULL);
 
 -- --------------------------------------------------------
 
@@ -349,7 +386,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `harga_log`
@@ -361,7 +398,7 @@ ALTER TABLE `harga_log`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `purchases`
@@ -379,13 +416,13 @@ ALTER TABLE `purchase_details`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id_sale` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_sale` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `sale_details`
 --
 ALTER TABLE `sale_details`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `stok_log`
@@ -397,7 +434,7 @@ ALTER TABLE `stok_log`
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
